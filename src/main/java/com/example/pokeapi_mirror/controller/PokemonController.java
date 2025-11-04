@@ -76,8 +76,8 @@ public class PokemonController {
 	@PreAuthorize("hasRole('USER')")
 	@GetMapping("/total_count/{id}")
     public ResponseEntity<?> totalCount(@PathVariable
-    	@IntegerPositive(message = "{idFilter.type}")
-    	@Size(max = 10, message = "{idFilter.size}") String id) {
+    	@IntegerPositive(message = "{id.type}")
+    	@Size(max = 10, message = "{id.size}") String id) {
 
         if (!pokemonService.existsPokemonById(id)) {
         	return new ResponseEntity<>(new SimpleMessage("id", id, "Pokemon no encontrado", MessageType.ERROR), HttpStatus.NOT_FOUND);

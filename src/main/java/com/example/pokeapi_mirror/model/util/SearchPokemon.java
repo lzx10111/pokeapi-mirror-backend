@@ -35,7 +35,17 @@ public class SearchPokemon {
     @Size(max = 10, message = "{weight.size}")
     private String weight_min;
 
-	public SearchPokemon() {
+	public SearchPokemon(String name, String id, String height_max, String height_min, String weight_max,
+            String weight_min) {
+        this.name = name;
+        this.id = id;
+        this.height_max = height_max;
+        this.height_min = height_min;
+        this.weight_max = weight_max;
+        this.weight_min = weight_min;
+    }
+
+    public SearchPokemon() {
     }
 
     public String getName() {

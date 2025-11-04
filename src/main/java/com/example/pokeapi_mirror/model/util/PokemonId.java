@@ -9,6 +9,10 @@ public class PokemonId {
 	@Size(max = 5, message = "{id.size}")
     private String id;
 
+	public PokemonId(String id) {
+		this.id = id;
+	}
+
 	public PokemonId() {
 	}
 

@@ -191,15 +191,16 @@ public class PokemonService {
     }
     
     public Integer getTotalCountSpecificPokemonFavorite(String id) {
-    	return favoriteRepository.totalFavoritePokemonCount(Integer.parseInt(id));
+    	// return favoriteRepository.totalFavoritePokemonCount(Integer.parseInt(id));
+        return (int) favoriteRepository.countByPokemonId(Integer.parseInt(id));
     }
 
     @SuppressWarnings("removal")
     public Integer deleteListPokemon(String start, String end) {
-        Long total = pokemonRepository.delete(where(idGreaterThanOrEqualTo(start).
+        long total = pokemonRepository.delete(where(idGreaterThanOrEqualTo(start).
                 and(idLessThanOrEqualTo(end))));
 
-        return total.intValue();
+        return (int) total;
     }
 
     public void deletePokemonWithId(String id) {

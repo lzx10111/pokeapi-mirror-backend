@@ -46,8 +46,4 @@ public class UserService {
     public boolean isUserFavorite(String username, Integer pokemonId) {
     	return favoriteRepository.existsByUsernameAndPokemonId(username, pokemonId);
     }
-
-    public Integer getTotalFavoritePokemonCount(Integer pokemonId) {
-        return favoriteRepository.totalFavoritePokemonCount(pokemonId);
-    }
 }

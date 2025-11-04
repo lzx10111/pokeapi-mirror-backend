@@ -4,6 +4,11 @@ public class PokemonGroup {
     private String start;
     private String end;
     
+    public PokemonGroup(String start, String end) {
+        this.start = start;
+        this.end = end;
+    }
+
     public PokemonGroup() {
     }
 

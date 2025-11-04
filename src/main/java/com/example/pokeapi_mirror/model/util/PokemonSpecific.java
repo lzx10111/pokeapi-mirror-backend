@@ -4,6 +4,11 @@ public class PokemonSpecific {
     private String id;
     private String name;
     
+    public PokemonSpecific(String id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public PokemonSpecific() {
     }
 
