@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.restdocs.RestDocumentationContextProvider;
 import org.springframework.restdocs.RestDocumentationExtension;
+import org.springframework.restdocs.operation.preprocess.ContentModifyingOperationPreprocessor;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -29,6 +30,12 @@ import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.docu
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.post;
 import static org.springframework.restdocs.operation.preprocess.Preprocessors.prettyPrint;
+import static org.springframework.restdocs.operation.preprocess.Preprocessors.preprocessResponse;
+import static org.springframework.restdocs.payload.PayloadDocumentation.requestFields;
+import static org.springframework.restdocs.payload.PayloadDocumentation.responseFields;
+import static org.springframework.restdocs.payload.PayloadDocumentation.beneathPath;
+import static org.springframework.restdocs.request.RequestDocumentation.queryParameters;
+import static org.springframework.restdocs.request.RequestDocumentation.pathParameters;
 
 @ExtendWith({ RestDocumentationExtension.class, SpringExtension.class })
 @ActiveProfiles("test")
@@ -57,7 +64,8 @@ class PokeapiMirrorApplicationTests {
 	void findPokemonAllTest() throws Exception {
 		this.mockMvc.perform(get("/api/pokemon/find/all"))
 				.andExpect(status().isOk())
-				.andDo(document("find-pokemon-all"));
+				.andDo(document("find-pokemon-all",
+				preprocessResponse(new ContentModifyingOperationPreprocessor(new FindPokemonAllContentModifier()))));
 	}
 
 	@Test
@@ -68,7 +76,12 @@ class PokeapiMirrorApplicationTests {
 				.perform(get("/api/pokemon/find?page=1&elements_per_page=3")
 						.accept(APPLICATION_JSON))
 				.andExpect(status().isOk())
-				.andDo(document("find-pokemon-by-page"));
+				.andDo(document("find-pokemon-by-page",
+				preprocessResponse(new ContentModifyingOperationPreprocessor(new FindPokemonPageContentModifier())),
+				queryParameters(DocumentationParameterDescriptors.pageFind()),
+				responseFields(DocumentationFieldDescriptors.pageResultWithBeneathPath()),
+				responseFields(beneathPath("content").withSubsectionId("pokemon"),
+				DocumentationFieldDescriptors.pokemonSimplified())));
 	}
 
 	@Test
@@ -81,7 +94,12 @@ class PokeapiMirrorApplicationTests {
 				.perform(get("/api/pokemon/find/filter?".concat(query).concat("&page=1&elements_per_page=3"))
 						.accept(APPLICATION_JSON))
 				.andExpect(status().isOk())
-				.andDo(document("find-pokemon-by-filter"));
+				.andDo(document("find-pokemon-by-filter",
+				preprocessResponse(new ContentModifyingOperationPreprocessor(new FindPokemonPageContentModifier())),
+				queryParameters(DocumentationParameterDescriptors.joinArrays(DocumentationParameterDescriptors.pageFind(), DocumentationParameterDescriptors.filter())),
+				responseFields(DocumentationFieldDescriptors.pageResultWithBeneathPath()),
+				responseFields(beneathPath("content").withSubsectionId("pokemon"),
+				DocumentationFieldDescriptors.pokemonSimplified())));
 	}
 
 	@Test
@@ -92,7 +110,21 @@ class PokeapiMirrorApplicationTests {
 				.perform(get("/api/pokemon/{id}", "1")
 						.accept(APPLICATION_JSON))
 				.andExpect(status().isOk())
-				.andDo(document("find-pokemon-by-id"));
+				.andDo(document("find-pokemon-by-id",
+				pathParameters(DocumentationParameterDescriptors.id()),
+				responseFields(DocumentationFieldDescriptors.pokemonWithBeneathPath()),
+				responseFields(beneathPath("abilities").withSubsectionId("abilities"),
+				DocumentationFieldDescriptors.abilitiesWithBeneathPath()),
+				responseFields(beneathPath("abilities[].ability").withSubsectionId("ability"),
+				DocumentationFieldDescriptors.ability()),
+				responseFields(beneathPath("cries").withSubsectionId("cries"),
+				DocumentationFieldDescriptors.cries()),
+				responseFields(beneathPath("sprites").withSubsectionId("sprites"),
+				DocumentationFieldDescriptors.spritesWithBeneathPath()),
+				responseFields(beneathPath("sprites.other").withSubsectionId("other"),
+				DocumentationFieldDescriptors.otherWithBeneathPath()),
+				responseFields(beneathPath("sprites.other.official-artwork").withSubsectionId("official-artwork"),
+				DocumentationFieldDescriptors.officialArtwork())));
 	}
 
 	@Test
@@ -104,7 +136,9 @@ class PokeapiMirrorApplicationTests {
 						.accept(APPLICATION_JSON))
 				.andExpectAll(status().isOk(),
 						jsonPath("$.totalCount").value("2"))
-				.andDo(document("total-count"));
+				.andDo(document("total-count",
+				pathParameters(DocumentationParameterDescriptors.id()),
+				responseFields(DocumentationFieldDescriptors.totalCount())));
 	}
 
 	@Test
@@ -118,7 +152,9 @@ class PokeapiMirrorApplicationTests {
 						.content(objectMapper.writeValueAsString(pokemonGroup)))
 				.andExpectAll(status().isOk(),
 						jsonPath("$.total").value("6"))
-				.andDo(document("add-group"));
+				.andDo(document("add-group",
+				requestFields(DocumentationFieldDescriptors.group()),
+				responseFields(DocumentationFieldDescriptors.total())));
 	}
 
 	@Test
@@ -132,7 +168,9 @@ class PokeapiMirrorApplicationTests {
 						.content(objectMapper.writeValueAsString(pokemonGroup)))
 				.andExpectAll(status().isOk(),
 						jsonPath("$.total").value("8"))
-				.andDo(document("delete-group"));
+				.andDo(document("delete-group",
+				requestFields(DocumentationFieldDescriptors.group()),
+				responseFields(DocumentationFieldDescriptors.total())));
 	}
 
 	@Test
@@ -146,7 +184,9 @@ class PokeapiMirrorApplicationTests {
 						.content(objectMapper.writeValueAsString(pokemonSpecific)))
 				.andExpectAll(status().isOk(),
 						jsonPath("$.total").value("1"))
-				.andDo(document("add-specific"));
+				.andDo(document("add-specific",
+				requestFields(DocumentationFieldDescriptors.specific()),
+				responseFields(DocumentationFieldDescriptors.total())));
 	}
 
 	@Test
@@ -160,7 +200,9 @@ class PokeapiMirrorApplicationTests {
 						.content(objectMapper.writeValueAsString(pokemonSpecific)))
 				.andExpectAll(status().isOk(),
 						jsonPath("$.total").value("1"))
-				.andDo(document("delete-specific"));
+				.andDo(document("delete-specific",
+				requestFields(DocumentationFieldDescriptors.specific()),
+				responseFields(DocumentationFieldDescriptors.total())));
 	}
 
 	@Test
@@ -174,7 +216,9 @@ class PokeapiMirrorApplicationTests {
 						.content(objectMapper.writeValueAsString(pokemonId)))
 				.andExpectAll(status().isOk(),
 						jsonPath("$.isFavorite").isBoolean())
-				.andDo(document("add-favorite"));
+				.andDo(document("add-favorite",
+				requestFields(DocumentationFieldDescriptors.id()),
+				responseFields(DocumentationFieldDescriptors.isFavorite())));
 	}
 
 	@Test
@@ -185,7 +229,9 @@ class PokeapiMirrorApplicationTests {
 				.perform(get("/api/user/find_favorites")
 						.accept(APPLICATION_JSON))
 				.andExpect(status().isOk())
-				.andDo(document("find-favorites"));
+				.andDo(document("find-favorites",
+				responseFields(beneathPath("[]").withSubsectionId("favorite"),
+				DocumentationFieldDescriptors.favorite())));
 	}
 
 	@Test
@@ -193,11 +239,13 @@ class PokeapiMirrorApplicationTests {
 	void isUserFavoriteTest() throws Exception {
 
 		this.mockMvc
-				.perform(get("/api/user/is_user_favorite/{pokemonId}", "5")
+				.perform(get("/api/user/is_user_favorite/{id}", "5")
 						.accept(APPLICATION_JSON))
 				.andExpectAll(status().isOk(),
 						jsonPath("$.isFavorite").value(false))
-				.andDo(document("is-user-favorite"));
+				.andDo(document("is-user-favorite",
+				pathParameters(DocumentationParameterDescriptors.id()),
+				responseFields(DocumentationFieldDescriptors.isFavorite())));
 	}
 
 	@AfterAll

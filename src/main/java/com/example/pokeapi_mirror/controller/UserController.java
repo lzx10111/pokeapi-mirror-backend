@@ -94,13 +94,13 @@ public class UserController {
 	}
 	
 	@PreAuthorize("hasRole('USER')")
-	@GetMapping("/is_user_favorite/{pokemonId}")
+	@GetMapping("/is_user_favorite/{id}")
     public ResponseEntity<?> isUserFavorite(@PathVariable 
     	@IntegerPositive(message = "{id.type}")
-		@Size(max = 5, message = "{id.size}") String pokemonId, @AuthenticationPrincipal Jwt jwt) {
+		@Size(max = 5, message = "{id.size}") String id, @AuthenticationPrincipal Jwt jwt) {
  
         HashMap<String, Boolean> msg = new HashMap<String, Boolean>();
-		msg.put("isFavorite", userService.isUserFavorite(jwt.getSubject(), Integer.parseInt(pokemonId)));
+		msg.put("isFavorite", userService.isUserFavorite(jwt.getSubject(), Integer.parseInt(id)));
 		
 		return new ResponseEntity<>(msg, HttpStatus.OK);
     }
