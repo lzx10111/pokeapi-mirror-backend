@@ -1,0 +1,76 @@
+= API Documentation
+:toc: left
+:toclevels: 2
+:source-highlighter: highlightjs
+
+== GET - Find Pokemon By ID
+
+Obtiene un Pokémon en específico. Solo en esta parte de la documentación se documentará todo el objeto Pokémon.
+
+operation::find-pokemon-by-id[snippets='curl-request,path-parameters,http-request,http-response,response-body,response-fields,response-fields-abilities,response-fields-ability,response-fields-cries,response-fields-sprites,response-fields-other,response-fields-official-artwork']
+
+== GET - Find Pokemon All
+
+Obtiene todos los Pokémon.
+
+operation::find-pokemon-all[snippets='curl-request,http-request,http-response,response-body']
+
+== GET - Find Pokemon By Page
+
+Obtiene los Pokémon dependiendo del número de página y cantidad de elementos por páginas.
+
+operation::find-pokemon-by-page[snippets='curl-request,query-parameters,http-request,http-response,response-body,response-fields,response-fields-pokemon']
+
+== GET - Find Pokemon By Filter
+
+Obtiene los Pokémon dependiendo del filtro.
+
+operation::find-pokemon-by-filter[snippets='curl-request,query-parameters,http-request,http-response,response-body,response-fields,response-fields-pokemon']
+
+== GET - Total Count
+
+Obtiene el número total de usuarios que tienen de favorito al Pokémon en específico.
+
+operation::total-count[snippets='curl-request,path-parameters,http-request,http-response,response-body,response-fields']
+
+== POST - Add Favorite
+
+Determina si un usuario tiene de favorito a un Pokémon en específico o no. Equivalente al botón «me gusta» de redes sociales.
+
+operation::add-favorite[snippets='curl-request,http-request,http-response,request-fields,request-body,response-body,response-fields']
+
+== GET - Find Favorites
+
+Obtiene todos los Pokémon favoritos del usuario autenticado.
+
+operation::find-favorites[snippets='curl-request,http-request,http-response,response-body,response-fields-favorite']
+
+== GET - Is User Favorite
+
+Obtiene un valor booleano que determina si un usuario tiene de favorito a un Pokémon en específico o no.
+
+operation::is-user-favorite[snippets='curl-request,path-parameters,http-request,http-response,response-body,response-fields']
+
+== POST - Add Group
+
+Agrega un grupo de Pokémon.
+
+operation::add-group[snippets='curl-request,http-request,http-response,request-fields,request-body,response-body,response-fields']
+
+== POST - Delete Group
+
+Elimina un grupo de Pokémon.
+
+operation::delete-group[snippets='curl-request,http-request,http-response,request-fields,request-body,response-body,response-fields']
+
+== POST - Add Specific
+
+Agrega un Pokémon en específico.
+
+operation::add-specific[snippets='curl-request,http-request,http-response,request-fields,request-body,response-body,response-fields']
+
+== POST - Delete Specific
+
+Elimina un Pokémon en específico.
+
+operation::delete-specific[snippets='curl-request,http-request,http-response,request-fields,request-body,response-body,response-fields']
