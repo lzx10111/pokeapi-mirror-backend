@@ -2,9 +2,11 @@ package com.example.pokeapi_mirror.model.util;
 
 import com.example.pokeapi_mirror.annotation.IntegerPositive;
 
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 public class PokemonId {
+	@NotNull(message = "{id.required}")
 	@IntegerPositive(message = "{id.type}")
 	@Size(max = 5, message = "{id.size}")
     private String id;

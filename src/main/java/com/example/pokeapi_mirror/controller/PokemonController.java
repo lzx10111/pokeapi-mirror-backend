@@ -22,6 +22,7 @@ import com.example.pokeapi_mirror.model.util.SimpleMessage;
 import com.example.pokeapi_mirror.service.PokemonService;
 
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Validated
@@ -62,7 +63,8 @@ public class PokemonController {
 	@PreAuthorize("hasRole('USER')")
 	@GetMapping("/{id}")
     public ResponseEntity<?> findPokemonByID(@PathVariable
-    	@IntegerPositive(message = "{id.type}")
+		@NotNull(message = "{id.required}")
+		@IntegerPositive(message = "{id.type}")
     	@Size(max = 5, message = "{id.size}") String id){
         
         Optional<Pokemon> pokemon = pokemonService.getPokemonByID(Integer.parseInt(id));
@@ -76,8 +78,9 @@ public class PokemonController {
 	@PreAuthorize("hasRole('USER')")
 	@GetMapping("/total_count/{id}")
     public ResponseEntity<?> totalCount(@PathVariable
-    	@IntegerPositive(message = "{id.type}")
-    	@Size(max = 10, message = "{id.size}") String id) {
+		@NotNull(message = "{id.required}")
+		@IntegerPositive(message = "{id.type}")
+    	@Size(max = 5, message = "{id.size}") String id) {
 
         if (!pokemonService.existsPokemonById(id)) {
         	return new ResponseEntity<>(new SimpleMessage("id", id, "Pokemon no encontrado", MessageType.ERROR), HttpStatus.NOT_FOUND);

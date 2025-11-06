@@ -23,6 +23,7 @@ import com.example.pokeapi_mirror.model.util.PokemonId;
 import com.example.pokeapi_mirror.model.util.SimpleMessage;
 import com.example.pokeapi_mirror.service.UserService;
 
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import jakarta.validation.Valid;
 
@@ -35,33 +36,6 @@ public class UserController {
 	public UserController(UserService userService) {
 		this.userService = userService;
 	}
-	
-	// @GetMapping("/me")
-	// public ResponseEntity<?> me(@AuthenticationPrincipal Jwt jwt) {
-	// 	HashMap<String, String> map = new HashMap<String, String>();
-	// 	String greetings = String.format("Hello, %s!", jwt.getClaimAsString("preferred_username"));
-	// 	String roles = String.format("Roles: %s", jwt.getClaimAsString("realm_access"));
-	// 	map.put("greetings", greetings);
-	// 	map.put("roles", roles);
-	// 	map.put("obj", jwt.getClaims().toString());
-	// 	return new ResponseEntity<>(map, HttpStatus.OK);
-	// }
-	
-	// @GetMapping("/testuser")
-	// public ResponseEntity<?> testuser() {
-	// 	HashMap<String, String> map = new HashMap<String, String>();
-	// 	map.put("greetings", "Hello, user!");
-		
-	// 	return new ResponseEntity<>(map, HttpStatus.OK);
-	// }
-	
-	// @GetMapping("/testadmin")
-	// public ResponseEntity<?> testadmin() {
-	// 	HashMap<String, String> map = new HashMap<String, String>();
-	// 	map.put("greetings", "Hello, admin!");
-		
-	// 	return new ResponseEntity<>(map, HttpStatus.OK);
-	// }
 	
 	@PreAuthorize("hasRole('USER')")
 	@PostMapping("/add_favorite")
@@ -96,7 +70,8 @@ public class UserController {
 	@PreAuthorize("hasRole('USER')")
 	@GetMapping("/is_user_favorite/{id}")
     public ResponseEntity<?> isUserFavorite(@PathVariable 
-    	@IntegerPositive(message = "{id.type}")
+    	@NotNull(message = "{id.required}")
+		@IntegerPositive(message = "{id.type}")
 		@Size(max = 5, message = "{id.size}") String id, @AuthenticationPrincipal Jwt jwt) {
  
         HashMap<String, Boolean> msg = new HashMap<String, Boolean>();
