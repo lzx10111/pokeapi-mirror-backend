@@ -11,19 +11,19 @@ operation::find-pokemon-by-id[snippets='curl-request,path-parameters,http-reques
 
 == GET - Find Pokemon All
 
-Obtiene todos los Pokémon.
+Obtiene todos los Pokémon. Para simplificar la documentación solo se mostrarán los primeros 3 resultados y se omitirán algunos valores en el objeto Pokémon.
 
 operation::find-pokemon-all[snippets='curl-request,http-request,http-response,response-body']
 
 == GET - Find Pokemon By Page
 
-Obtiene los Pokémon dependiendo del número de página y cantidad de elementos por páginas.
+Obtiene los Pokémon dependiendo del número de página y cantidad de elementos por páginas. Para simplificar la documentación se omitirán algunos valores en el objeto Pokémon.
 
 operation::find-pokemon-by-page[snippets='curl-request,query-parameters,http-request,http-response,response-body,response-fields,response-fields-pokemon']
 
 == GET - Find Pokemon By Filter
 
-Obtiene los Pokémon dependiendo del filtro.
+Obtiene los Pokémon dependiendo del filtro. Si el filtro no coincide con ningun Pokémon entonces se devolvera una lista vacia. Para simplificar la documentación se omitirán algunos valores en el objeto Pokémon.
 
 operation::find-pokemon-by-filter[snippets='curl-request,query-parameters,http-request,http-response,response-body,response-fields,response-fields-pokemon']
 
