@@ -12,25 +12,29 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.MessageSource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 
 import static com.example.pokeapi_mirror.repository.PokemonSpecifications.*;
-import static org.springframework.data.jpa.domain.Specification.where;
 
 @Service
 public class PokemonService {
 
     private final RestTemplate restTemplate;
+    private final MessageSource messageSource;
     private final PokemonRepository pokemonRepository;
     private final FavoriteRepository favoriteRepository;
     
@@ -41,14 +45,15 @@ public class PokemonService {
     @Value("${pokeapi.total.offline}")
     private String pokeapi_total_offline;
 
-    public PokemonService(RestTemplate restTemplate, PokemonRepository pokemonRepository,
-			FavoriteRepository favoriteRepository) {
-		this.restTemplate = restTemplate;
-		this.pokemonRepository = pokemonRepository;
-		this.favoriteRepository = favoriteRepository;
-	}
+	public PokemonService(RestTemplate restTemplate, MessageSource messageSource, PokemonRepository pokemonRepository,
+            FavoriteRepository favoriteRepository) {
+        this.restTemplate = restTemplate;
+        this.messageSource = messageSource;
+        this.pokemonRepository = pokemonRepository;
+        this.favoriteRepository = favoriteRepository;
+    }
 
-	public String getTotalCountPokeAPI() {
+    public String getTotalCountPokeAPI() {
         ResponseEntity<String> response;
 
         try {
@@ -120,11 +125,11 @@ public class PokemonService {
         pokemonRepository.save(getPokemonByNamePokeAPI(name));
     }
 
-    public Integer saveListPokemon(String start, String end) {
+    public Long saveListPokemon(String start, String end) {
         List<Pokemon> listPokemon = getListPokeAPI(Integer.parseInt(start), Integer.parseInt(end));
         List<Pokemon> list = pokemonRepository.saveAll(listPokemon);
 
-        return list.size();
+        return Long.valueOf(list.size());
     }
     
     public boolean existsByIdPokeAPI(String id) {
@@ -166,6 +171,12 @@ public class PokemonService {
     public List<Pokemon> getListPokemonAll() {
         return pokemonRepository.findAll();
     }
+
+    public Integer getSizeListPokemon(Iterable<Integer> ids) {
+        List<Pokemon> list = pokemonRepository.findAllById(ids);
+
+        return list.size();
+    }
     
     public PageResult<Pokemon> getListPokemonPage(String page_number, String page_size) {
     	Pageable pageable = PageRequest.of(Integer.parseInt(page_number) - 1, Integer.parseInt(page_size));
@@ -173,15 +184,18 @@ public class PokemonService {
     	
     	return new PageResult<Pokemon>(page);
     }
-     
-    @SuppressWarnings("removal")
+    
 	public PageResult<Pokemon> getListPokemonFilteredPage(SearchPokemon searchPokemon, String page_number, String page_size) {
     	Pageable pageable = PageRequest.of(Integer.parseInt(page_number) - 1, Integer.parseInt(page_size));
-    	Page<Pokemon> page = pokemonRepository.findAll(where(nameLike(searchPokemon.getName()).
-                and(idLike(searchPokemon.getId())).
-                and(heightLike(searchPokemon.getHeight_min(), searchPokemon.getHeight_max())).
-                and(weightLike(searchPokemon.getWeight_min(), searchPokemon.getWeight_max()))), pageable);
-    	
+        Specification<Pokemon> spec = Specification.unrestricted();
+        
+        spec = spec.and(nameLike(searchPokemon.getName()));
+        spec = spec.and(idLike(searchPokemon.getId()));
+        spec = spec.and(heightLike(searchPokemon.getHeight_min(), searchPokemon.getHeight_max()));
+        spec = spec.and(weightLike(searchPokemon.getWeight_min(), searchPokemon.getWeight_max()));
+        
+        Page<Pokemon> page = pokemonRepository.findAll(spec, pageable);
+
     	return new PageResult<Pokemon>(page);
     }
     
@@ -190,17 +204,24 @@ public class PokemonService {
         return pokemonRepository.findById(id);
     }
     
-    public Integer getTotalCountSpecificPokemonFavorite(String id) {
-    	// return favoriteRepository.totalFavoritePokemonCount(Integer.parseInt(id));
-        return (int) favoriteRepository.countByPokemonId(Integer.parseInt(id));
+    public Long getTotalCountSpecificPokemonFavorite(String id) {
+        long total = favoriteRepository.countByPokemonId(Integer.parseInt(id));
+        return Long.valueOf(total);
     }
 
-    @SuppressWarnings("removal")
-    public Integer deleteListPokemon(String start, String end) {
-        long total = pokemonRepository.delete(where(idGreaterThanOrEqualTo(start).
-                and(idLessThanOrEqualTo(end))));
+    public String getTotalPokemons() {
+        return String.valueOf(getTotalCountPokeAPI());
+    }
 
-        return (int) total;
+    public Long deleteListPokemon(String start, String end) {
+        Specification<Pokemon> spec = Specification.unrestricted();
+        
+        spec = spec.and(idGreaterThanOrEqualTo(start));
+        spec = spec.and(idLessThanOrEqualTo(end));
+        
+        long total = pokemonRepository.delete(spec);
+
+        return total;
     }
 
     public void deletePokemonWithId(String id) {
@@ -256,9 +277,10 @@ public class PokemonService {
     	
     	if (!s.isEmpty()) {
     		errors.add(new SimpleMessage("group", s.substring(0, s.length() - 2), "Pokemon ya existe en la base de datos", MessageType.ERROR));
-    	}
+            return errors;
+        }
     	
-    	return errors;
+    	return Collections.emptyList();
     }
     
     
@@ -277,24 +299,28 @@ public class PokemonService {
     		errors.add(new SimpleMessage("group", String.join(", ", groupStart, groupEnd), 
     				"'Desde' no puede ser mayor o igual que 'Hasta'", MessageType.ERROR));
     	}
+
+        if (!errors.isEmpty()) {
+    		return errors;
+    	}
     	
-    	return errors;
+        return Collections.emptyList();
     }
     
-    public List<SimpleMessage> addSpecificHasErrors(String id, String name, String fieldName1, String fieldName2) {
+    public List<SimpleMessage> addSpecificHasErrors(String id, String name, String fieldName1, String fieldName2, Locale locale) {
     	List<SimpleMessage> errors = new ArrayList<>();
 
     	if (id.isEmpty() && name.isEmpty()) {
-    		errors.add(new SimpleMessage("specific", String.join(", ", id, name), "Ambos campos estan vacios", MessageType.ERROR));
+    		errors.add(new SimpleMessage("specific", null, messageSource.getMessage("specific.fields.notempty", null, locale), MessageType.ERROR));
     		return errors;
     	}
     	
     	if (existsPokemonById(id)) {
-    		errors.add(new SimpleMessage(fieldName1, id, "El pokemon ya existe en la base de datos", MessageType.ERROR));
+    		errors.add(new SimpleMessage(fieldName1, id, messageSource.getMessage("specific.fields.conflict", null, locale), MessageType.ERROR));
     	}
     	
     	if (existsPokemonByName(name)) {
-    		errors.add(new SimpleMessage(fieldName2, name, "El pokemon ya existe en la base de datos", MessageType.ERROR));
+    		errors.add(new SimpleMessage(fieldName2, name, messageSource.getMessage("specific.fields.conflict", null, locale), MessageType.ERROR));
     	}
     	
     	if (!errors.isEmpty()) {
@@ -302,11 +328,11 @@ public class PokemonService {
     	}
     	
     	if (!existsByIdPokeAPI(id) && !id.isEmpty()) {
-    		errors.add(new SimpleMessage(fieldName1, id, "Pokemon no encontrado", MessageType.ERROR));
+    		errors.add(new SimpleMessage(fieldName1, id, messageSource.getMessage("specific.id.required", null, locale), MessageType.ERROR));
         }
     	
     	if (!existsByNamePokeAPI(name) && !name.isEmpty()) {
-    		errors.add(new SimpleMessage(fieldName2, name, "Pokemon no encontrado", MessageType.ERROR));
+    		errors.add(new SimpleMessage(fieldName2, name, messageSource.getMessage("specific.name.required", null, locale), MessageType.ERROR));
         }
     	
     	if (!(id.isEmpty() && name.isEmpty()) && !errors.isEmpty()) {
@@ -315,10 +341,11 @@ public class PokemonService {
     	
     	Pokemon pokemon = getPokemonByIdPokeAPI(id);
     	if (!pokemon.getName().equalsIgnoreCase(name) && !name.isEmpty()) {
-    		errors.add(new SimpleMessage("specific", String.join(", ", id, name), "No existe un pokemon con esos respectivos campos", MessageType.ERROR));
-    	}
+    		errors.add(new SimpleMessage("specific", String.join(", ", id, name), messageSource.getMessage("specific.fields.notfound", null, locale), MessageType.ERROR));
+            return errors;
+        }
     	
-    	return errors;
+        return Collections.emptyList();
     }
     
     public List<SimpleMessage> deleteSpecificHasErrors(String id, String name, String fieldName1, String fieldName2) {
@@ -344,12 +371,9 @@ public class PokemonService {
     	Pokemon pokemon = getPokemonByID(Integer.parseInt(id)).get();
     	if (!pokemon.getName().equalsIgnoreCase(name) && !name.isEmpty()) {
     		errors.add(new SimpleMessage("specific", String.join(", ", id, name), "No existe un pokemon con esos respectivos campos", MessageType.ERROR));
-    	}
+            return errors;
+        }
     	
-    	return errors;
-    }
-
-    public String getTotalPokemons() {
-        return String.valueOf(this.getTotalCountPokeAPI());
+        return Collections.emptyList();
     }
 }

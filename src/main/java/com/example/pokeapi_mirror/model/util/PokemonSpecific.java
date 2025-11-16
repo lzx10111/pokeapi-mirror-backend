@@ -7,7 +7,7 @@ import jakarta.validation.constraints.Size;
 
 public class PokemonSpecific {
     @NotNull(message = "{id.required}")
-    @IntegerPositive(message = "{id.type}")
+    @IntegerPositive(allowEmptyValue = true, message = "{id.type}")
     @Size(max = 5, message = "{id.size}")
     private String id;
 

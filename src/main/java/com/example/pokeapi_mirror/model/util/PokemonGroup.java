@@ -10,7 +10,7 @@ public class PokemonGroup {
     @IntegerPositive(message = "{id.type}")
     @Size(max = 5, message = "{id.size}")
     private String start;
-
+    
     @NotNull(message = "{id.required}")
     @IntegerPositive(message = "{id.type}")
     @Size(max = 5, message = "{id.size}")

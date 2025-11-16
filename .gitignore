@@ -31,3 +31,5 @@ build/
 
 ### VS Code ###
 .vscode/
+src/main/asciidoc/test.adoc
+src/main/asciidoc/img

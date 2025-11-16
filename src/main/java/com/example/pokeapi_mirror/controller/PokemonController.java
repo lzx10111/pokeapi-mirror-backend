@@ -86,8 +86,8 @@ public class PokemonController {
         	return new ResponseEntity<>(new SimpleMessage("id", id, "Pokemon no encontrado", MessageType.ERROR), HttpStatus.NOT_FOUND);
         }
         
-        HashMap<String, String> msg = new HashMap<String, String>();
-		msg.put("totalCount", pokemonService.getTotalCountSpecificPokemonFavorite(id).toString());
+        HashMap<String, Long> msg = new HashMap<String, Long>();
+		msg.put("totalCount", pokemonService.getTotalCountSpecificPokemonFavorite(id));
 		
 		return new ResponseEntity<>(msg, HttpStatus.OK);
     }

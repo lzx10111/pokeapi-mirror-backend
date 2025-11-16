@@ -101,7 +101,7 @@ public class MyCustomResponseEntityExceptionHandler extends ResponseEntityExcept
 		for (int i=0; i < listFields.size(); i++) {
 			errors.add(new SimpleMessage(listFields.get(i), listInvalidField.get(i), listMsgField.get(i), MessageType.ERROR));
         }
-		
+
 		return new ResponseEntity<>(errors, null, HttpStatus.BAD_REQUEST);
 	}
 }

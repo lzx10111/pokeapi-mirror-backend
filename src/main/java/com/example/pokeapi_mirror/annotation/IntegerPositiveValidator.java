@@ -15,10 +15,12 @@ public class IntegerPositiveValidator implements ConstraintValidator<IntegerPosi
 
     @Override
     public boolean isValid(String s, ConstraintValidatorContext constraintValidatorContext) {
-    	if (s == null) {
+        if (s == null) {
             return false;
         }
-        int length = s.length();
+        
+        final int length = s.length();
+
         if (allowEmptyValue && length == 0) {
             return true;
         }
