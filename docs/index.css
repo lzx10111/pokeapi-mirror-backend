@@ -1,0 +1,119 @@
+* {
+	scrollbar-color: #414548 #171a1b !important;
+}
+
+body {
+    color: rgba(247, 243, 236, 0.8) !important;
+}
+
+
+body.book {
+    background-color: #0e1011;
+}
+
+a {
+    color: #76b2e9 !important;
+}
+
+code {
+	color: rgba(247, 243, 236, 0.9);
+}
+
+#toc {
+	border-bottom-color: #303536 !important;
+}
+
+#toctitle {
+	color: #f09181 !important;
+}
+
+.subheader, .admonitionblock td.content > .title, .audioblock > .title, .exampleblock > .title, .imageblock > .title, .listingblock > .title, .literalblock > .title, .stemblock > .title, .openblock > .title, .paragraph > .title, .quoteblock > .title, table.tableblock > .title, .verseblock > .title, .videoblock > .title, .dlist > .title, .olist > .title, .ulist > .title, .qlist > .title, .hdlist > .title {
+	color: #f09181 !important;
+}
+
+#header > h1:only-child, body.toc2 #header > h1:nth-last-child(2) {
+	border-bottom-color: #333839;
+}
+
+#header > h1:first-child + #toc {
+	border-top-color: #333839 !important;
+}
+
+h1, h2, h3, #toctitle, .sidebarblock > .content > .title, h4, h5, h6 {
+	color: #e46550 !important;
+}
+
+table tr th, table tr td {
+	color: rgba(247, 243, 236, 0.8) !important;
+}
+
+table {
+    background-color: #0e1011 !important;
+}
+
+table thead, table tfoot {
+	background-color: #131616;
+}
+
+table.tableblock, th.tableblock, td.tableblock {
+	border-top-color: #333839 !important;
+	border-right-color: #333839 !important;
+	border-bottom-color: #333839 !important;
+	border-left-color: #333839 !important;
+}
+
+#header > h1:first-child {
+    color: rgba(247, 243, 236, 0.85) !important;
+}
+
+.sect1 + .sect1 {
+	border-top-color: #303536;
+}
+
+.imageblock>.title {
+    text-align: inherit;
+}
+
+.imageblock>.content>img {
+    border: 1px #303536 solid;
+    border-radius: 5px;
+}
+
+.exampleblock > .content {
+	background-color: #211c00 !important;
+	background-image: none;
+	border-top-color: #333839 !important;
+	border-right-color: #333839 !important;
+	border-bottom-color: #333839 !important;
+	border-left-color: #333839 !important;
+	box-shadow: #232628 0px 1px 4px;
+}
+
+.hljs {
+	color: #d3ccc2 !important;
+	background-color: #121415 !important;
+	background-image: none;
+}
+
+.hljs-keyword, .hljs-selector-tag, .hljs-subst {
+	color: #d3ccc2 !important;
+}
+
+.hljs-tag, .hljs-name, .hljs-attribute {
+	color: #84b4ff !important;
+}
+
+.hljs-string, .hljs-doctag {
+	color: #f53262;
+}
+
+.hljs-number, .hljs-literal, .hljs-variable, .hljs-template-variable, .hljs-tag .hljs-attr {
+	color: #7affff;
+}
+
+@media screen and (min-width: 768px) {
+    #toc.toc2 {
+        background: #131616 !important;
+        border-right-color: #303536;
+    }
+}

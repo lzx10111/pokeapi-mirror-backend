@@ -49,16 +49,18 @@ public class UserController {
 		
 		if (userService.favoriteExists(favorite)) {
             userService.deleteFavorite(favorite);
+			userService.favoriteCountTotalDecrease(Integer.parseInt(pokemonId.getId()));
             map.put("isFavorite", false);
             return new ResponseEntity<>(map, HttpStatus.OK);
         }
         else {
             userService.saveFavorite(favorite);
-            map.put("isFavorite", true);
+            userService.favoriteCountTotalIncrease(Integer.parseInt(pokemonId.getId()));
+			map.put("isFavorite", true);
             return new ResponseEntity<>(map, HttpStatus.OK);
         }
 	}
-	
+
 	@PreAuthorize("hasRole('USER')")
 	@GetMapping("/find_favorites")
 	public ResponseEntity<?> findFavorites(@AuthenticationPrincipal Jwt jwt) {

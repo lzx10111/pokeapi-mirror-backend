@@ -33,3 +33,4 @@ build/
 .vscode/
 src/main/asciidoc/test.adoc
 src/main/asciidoc/img
+src/main/asciidoc/test.txt

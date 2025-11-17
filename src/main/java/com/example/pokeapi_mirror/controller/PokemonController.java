@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.pokeapi_mirror.annotation.IntegerPositive;
+import com.example.pokeapi_mirror.model.entity.FavoriteCount;
 import com.example.pokeapi_mirror.model.entity.Pokemon;
 import com.example.pokeapi_mirror.model.util.MessageType;
 import com.example.pokeapi_mirror.model.util.SearchPokemon;
@@ -86,8 +87,18 @@ public class PokemonController {
         	return new ResponseEntity<>(new SimpleMessage("id", id, "Pokemon no encontrado", MessageType.ERROR), HttpStatus.NOT_FOUND);
         }
         
-        HashMap<String, Long> msg = new HashMap<String, Long>();
-		msg.put("totalCount", pokemonService.getTotalCountSpecificPokemonFavorite(id));
+		Optional<FavoriteCount> favoriteCount = pokemonService.getFavoriteCountByID(Integer.parseInt(id));
+		Integer totalCount;
+
+		if (favoriteCount.isPresent()) {
+            totalCount = favoriteCount.get().getTotal();
+        }
+        else {
+            totalCount = 0;
+        }
+
+        HashMap<String, Integer> msg = new HashMap<String, Integer>();
+		msg.put("totalCount", totalCount);
 		
 		return new ResponseEntity<>(msg, HttpStatus.OK);
     }

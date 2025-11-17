@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.15">
-<title>API Documentation</title>
+<title>API Documentación</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -435,141 +435,142 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/styles/github.min.css">
+<link rel="stylesheet" href="index.css">
 </head>
 <body class="book toc2 toc-left">
 <div id="header">
-<h1>API Documentation</h1>
+<h1>API Documentación</h1>
 <div id="toc" class="toc2">
-<div id="toctitle">Table of Contents</div>
+<div id="toctitle">Tabla de contenido</div>
 <ul class="sectlevel1">
-<li><a href="#_get_find_pokemon_by_id">GET - Find Pokemon By ID</a>
+<li><a href="#_get_find_pokemon_by_id">1. GET - Find Pokemon By ID</a>
 <ul class="sectlevel2">
-<li><a href="#_get_find_pokemon_by_id_curl_request">Curl request</a></li>
-<li><a href="#_get_find_pokemon_by_id_path_parameters">Path parameters</a></li>
-<li><a href="#_get_find_pokemon_by_id_http_request">HTTP request</a></li>
-<li><a href="#_get_find_pokemon_by_id_http_response">HTTP response</a></li>
-<li><a href="#_get_find_pokemon_by_id_response_body">Response body</a></li>
-<li><a href="#_get_find_pokemon_by_id_response_fields">Response fields</a></li>
-<li><a href="#_get_find_pokemon_by_id_response_fields-abilities">Response fields-abilities</a></li>
-<li><a href="#_get_find_pokemon_by_id_response_fields-ability">Response fields-ability</a></li>
-<li><a href="#_get_find_pokemon_by_id_response_fields-cries">Response fields-cries</a></li>
-<li><a href="#_get_find_pokemon_by_id_response_fields-sprites">Response fields-sprites</a></li>
-<li><a href="#_get_find_pokemon_by_id_response_fields-other">Response fields-other</a></li>
-<li><a href="#_get_find_pokemon_by_id_response_fields-official-artwork">Response fields-official-artwork</a></li>
+<li><a href="#_get_find_pokemon_by_id_curl_request">1.1. Curl request</a></li>
+<li><a href="#_get_find_pokemon_by_id_path_parameters">1.2. Path parameters</a></li>
+<li><a href="#_get_find_pokemon_by_id_http_request">1.3. HTTP request</a></li>
+<li><a href="#_get_find_pokemon_by_id_http_response">1.4. HTTP response</a></li>
+<li><a href="#_get_find_pokemon_by_id_response_body">1.5. Response body</a></li>
+<li><a href="#_get_find_pokemon_by_id_response_fields">1.6. Response fields</a></li>
+<li><a href="#_get_find_pokemon_by_id_response_fields-abilities">1.7. Response fields-abilities</a></li>
+<li><a href="#_get_find_pokemon_by_id_response_fields-ability">1.8. Response fields-ability</a></li>
+<li><a href="#_get_find_pokemon_by_id_response_fields-cries">1.9. Response fields-cries</a></li>
+<li><a href="#_get_find_pokemon_by_id_response_fields-sprites">1.10. Response fields-sprites</a></li>
+<li><a href="#_get_find_pokemon_by_id_response_fields-other">1.11. Response fields-other</a></li>
+<li><a href="#_get_find_pokemon_by_id_response_fields-official-artwork">1.12. Response fields-official-artwork</a></li>
 </ul>
 </li>
-<li><a href="#_get_find_pokemon_all">GET - Find Pokemon All</a>
+<li><a href="#_get_find_pokemon_all">2. GET - Find Pokemon All</a>
 <ul class="sectlevel2">
-<li><a href="#_get_find_pokemon_all_curl_request">Curl request</a></li>
-<li><a href="#_get_find_pokemon_all_http_request">HTTP request</a></li>
-<li><a href="#_get_find_pokemon_all_http_response">HTTP response</a></li>
-<li><a href="#_get_find_pokemon_all_response_body">Response body</a></li>
+<li><a href="#_get_find_pokemon_all_curl_request">2.1. Curl request</a></li>
+<li><a href="#_get_find_pokemon_all_http_request">2.2. HTTP request</a></li>
+<li><a href="#_get_find_pokemon_all_http_response">2.3. HTTP response</a></li>
+<li><a href="#_get_find_pokemon_all_response_body">2.4. Response body</a></li>
 </ul>
 </li>
-<li><a href="#_get_find_pokemon_by_page">GET - Find Pokemon By Page</a>
+<li><a href="#_get_find_pokemon_by_page">3. GET - Find Pokemon By Page</a>
 <ul class="sectlevel2">
-<li><a href="#_get_find_pokemon_by_page_curl_request">Curl request</a></li>
-<li><a href="#_get_find_pokemon_by_page_query_parameters">Query parameters</a></li>
-<li><a href="#_get_find_pokemon_by_page_http_request">HTTP request</a></li>
-<li><a href="#_get_find_pokemon_by_page_http_response">HTTP response</a></li>
-<li><a href="#_get_find_pokemon_by_page_response_body">Response body</a></li>
-<li><a href="#_get_find_pokemon_by_page_response_fields">Response fields</a></li>
-<li><a href="#_get_find_pokemon_by_page_response_fields-pokemon">Response fields-pokemon</a></li>
+<li><a href="#_get_find_pokemon_by_page_curl_request">3.1. Curl request</a></li>
+<li><a href="#_get_find_pokemon_by_page_query_parameters">3.2. Query parameters</a></li>
+<li><a href="#_get_find_pokemon_by_page_http_request">3.3. HTTP request</a></li>
+<li><a href="#_get_find_pokemon_by_page_http_response">3.4. HTTP response</a></li>
+<li><a href="#_get_find_pokemon_by_page_response_body">3.5. Response body</a></li>
+<li><a href="#_get_find_pokemon_by_page_response_fields">3.6. Response fields</a></li>
+<li><a href="#_get_find_pokemon_by_page_response_fields-pokemon">3.7. Response fields-pokemon</a></li>
 </ul>
 </li>
-<li><a href="#_get_find_pokemon_by_filter">GET - Find Pokemon By Filter</a>
+<li><a href="#_get_find_pokemon_by_filter">4. GET - Find Pokemon By Filter</a>
 <ul class="sectlevel2">
-<li><a href="#_get_find_pokemon_by_filter_curl_request">Curl request</a></li>
-<li><a href="#_get_find_pokemon_by_filter_query_parameters">Query parameters</a></li>
-<li><a href="#_get_find_pokemon_by_filter_http_request">HTTP request</a></li>
-<li><a href="#_get_find_pokemon_by_filter_http_response">HTTP response</a></li>
-<li><a href="#_get_find_pokemon_by_filter_response_body">Response body</a></li>
-<li><a href="#_get_find_pokemon_by_filter_response_fields">Response fields</a></li>
-<li><a href="#_get_find_pokemon_by_filter_response_fields-pokemon">Response fields-pokemon</a></li>
+<li><a href="#_get_find_pokemon_by_filter_curl_request">4.1. Curl request</a></li>
+<li><a href="#_get_find_pokemon_by_filter_query_parameters">4.2. Query parameters</a></li>
+<li><a href="#_get_find_pokemon_by_filter_http_request">4.3. HTTP request</a></li>
+<li><a href="#_get_find_pokemon_by_filter_http_response">4.4. HTTP response</a></li>
+<li><a href="#_get_find_pokemon_by_filter_response_body">4.5. Response body</a></li>
+<li><a href="#_get_find_pokemon_by_filter_response_fields">4.6. Response fields</a></li>
+<li><a href="#_get_find_pokemon_by_filter_response_fields-pokemon">4.7. Response fields-pokemon</a></li>
 </ul>
 </li>
-<li><a href="#_get_total_count">GET - Total Count</a>
+<li><a href="#_get_total_count">5. GET - Total Count</a>
 <ul class="sectlevel2">
-<li><a href="#_get_total_count_curl_request">Curl request</a></li>
-<li><a href="#_get_total_count_path_parameters">Path parameters</a></li>
-<li><a href="#_get_total_count_http_request">HTTP request</a></li>
-<li><a href="#_get_total_count_http_response">HTTP response</a></li>
-<li><a href="#_get_total_count_response_body">Response body</a></li>
-<li><a href="#_get_total_count_response_fields">Response fields</a></li>
+<li><a href="#_get_total_count_curl_request">5.1. Curl request</a></li>
+<li><a href="#_get_total_count_path_parameters">5.2. Path parameters</a></li>
+<li><a href="#_get_total_count_http_request">5.3. HTTP request</a></li>
+<li><a href="#_get_total_count_http_response">5.4. HTTP response</a></li>
+<li><a href="#_get_total_count_response_body">5.5. Response body</a></li>
+<li><a href="#_get_total_count_response_fields">5.6. Response fields</a></li>
 </ul>
 </li>
-<li><a href="#_post_add_favorite">POST - Add Favorite</a>
+<li><a href="#_post_add_favorite">6. POST - Add Favorite</a>
 <ul class="sectlevel2">
-<li><a href="#_post_add_favorite_curl_request">Curl request</a></li>
-<li><a href="#_post_add_favorite_http_request">HTTP request</a></li>
-<li><a href="#_post_add_favorite_http_response">HTTP response</a></li>
-<li><a href="#_post_add_favorite_request_fields">Request fields</a></li>
-<li><a href="#_post_add_favorite_request_body">Request body</a></li>
-<li><a href="#_post_add_favorite_response_body">Response body</a></li>
-<li><a href="#_post_add_favorite_response_fields">Response fields</a></li>
+<li><a href="#_post_add_favorite_curl_request">6.1. Curl request</a></li>
+<li><a href="#_post_add_favorite_http_request">6.2. HTTP request</a></li>
+<li><a href="#_post_add_favorite_http_response">6.3. HTTP response</a></li>
+<li><a href="#_post_add_favorite_request_fields">6.4. Request fields</a></li>
+<li><a href="#_post_add_favorite_request_body">6.5. Request body</a></li>
+<li><a href="#_post_add_favorite_response_body">6.6. Response body</a></li>
+<li><a href="#_post_add_favorite_response_fields">6.7. Response fields</a></li>
 </ul>
 </li>
-<li><a href="#_get_find_favorites">GET - Find Favorites</a>
+<li><a href="#_get_find_favorites">7. GET - Find Favorites</a>
 <ul class="sectlevel2">
-<li><a href="#_get_find_favorites_curl_request">Curl request</a></li>
-<li><a href="#_get_find_favorites_http_request">HTTP request</a></li>
-<li><a href="#_get_find_favorites_http_response">HTTP response</a></li>
-<li><a href="#_get_find_favorites_response_body">Response body</a></li>
-<li><a href="#_get_find_favorites_response_fields-favorite">Response fields-favorite</a></li>
+<li><a href="#_get_find_favorites_curl_request">7.1. Curl request</a></li>
+<li><a href="#_get_find_favorites_http_request">7.2. HTTP request</a></li>
+<li><a href="#_get_find_favorites_http_response">7.3. HTTP response</a></li>
+<li><a href="#_get_find_favorites_response_body">7.4. Response body</a></li>
+<li><a href="#_get_find_favorites_response_fields-favorite">7.5. Response fields-favorite</a></li>
 </ul>
 </li>
-<li><a href="#_get_is_user_favorite">GET - Is User Favorite</a>
+<li><a href="#_get_is_user_favorite">8. GET - Is User Favorite</a>
 <ul class="sectlevel2">
-<li><a href="#_get_is_user_favorite_curl_request">Curl request</a></li>
-<li><a href="#_get_is_user_favorite_path_parameters">Path parameters</a></li>
-<li><a href="#_get_is_user_favorite_http_request">HTTP request</a></li>
-<li><a href="#_get_is_user_favorite_http_response">HTTP response</a></li>
-<li><a href="#_get_is_user_favorite_response_body">Response body</a></li>
-<li><a href="#_get_is_user_favorite_response_fields">Response fields</a></li>
+<li><a href="#_get_is_user_favorite_curl_request">8.1. Curl request</a></li>
+<li><a href="#_get_is_user_favorite_path_parameters">8.2. Path parameters</a></li>
+<li><a href="#_get_is_user_favorite_http_request">8.3. HTTP request</a></li>
+<li><a href="#_get_is_user_favorite_http_response">8.4. HTTP response</a></li>
+<li><a href="#_get_is_user_favorite_response_body">8.5. Response body</a></li>
+<li><a href="#_get_is_user_favorite_response_fields">8.6. Response fields</a></li>
 </ul>
 </li>
-<li><a href="#_post_add_group">POST - Add Group</a>
+<li><a href="#_post_add_group">9. POST - Add Group</a>
 <ul class="sectlevel2">
-<li><a href="#_post_add_group_curl_request">Curl request</a></li>
-<li><a href="#_post_add_group_http_request">HTTP request</a></li>
-<li><a href="#_post_add_group_http_response">HTTP response</a></li>
-<li><a href="#_post_add_group_request_fields">Request fields</a></li>
-<li><a href="#_post_add_group_request_body">Request body</a></li>
-<li><a href="#_post_add_group_response_body">Response body</a></li>
-<li><a href="#_post_add_group_response_fields">Response fields</a></li>
+<li><a href="#_post_add_group_curl_request">9.1. Curl request</a></li>
+<li><a href="#_post_add_group_http_request">9.2. HTTP request</a></li>
+<li><a href="#_post_add_group_http_response">9.3. HTTP response</a></li>
+<li><a href="#_post_add_group_request_fields">9.4. Request fields</a></li>
+<li><a href="#_post_add_group_request_body">9.5. Request body</a></li>
+<li><a href="#_post_add_group_response_body">9.6. Response body</a></li>
+<li><a href="#_post_add_group_response_fields">9.7. Response fields</a></li>
 </ul>
 </li>
-<li><a href="#_post_delete_group">POST - Delete Group</a>
+<li><a href="#_post_delete_group">10. POST - Delete Group</a>
 <ul class="sectlevel2">
-<li><a href="#_post_delete_group_curl_request">Curl request</a></li>
-<li><a href="#_post_delete_group_http_request">HTTP request</a></li>
-<li><a href="#_post_delete_group_http_response">HTTP response</a></li>
-<li><a href="#_post_delete_group_request_fields">Request fields</a></li>
-<li><a href="#_post_delete_group_request_body">Request body</a></li>
-<li><a href="#_post_delete_group_response_body">Response body</a></li>
-<li><a href="#_post_delete_group_response_fields">Response fields</a></li>
+<li><a href="#_post_delete_group_curl_request">10.1. Curl request</a></li>
+<li><a href="#_post_delete_group_http_request">10.2. HTTP request</a></li>
+<li><a href="#_post_delete_group_http_response">10.3. HTTP response</a></li>
+<li><a href="#_post_delete_group_request_fields">10.4. Request fields</a></li>
+<li><a href="#_post_delete_group_request_body">10.5. Request body</a></li>
+<li><a href="#_post_delete_group_response_body">10.6. Response body</a></li>
+<li><a href="#_post_delete_group_response_fields">10.7. Response fields</a></li>
 </ul>
 </li>
-<li><a href="#_post_add_specific">POST - Add Specific</a>
+<li><a href="#_post_add_specific">11. POST - Add Specific</a>
 <ul class="sectlevel2">
-<li><a href="#_post_add_specific_curl_request">Curl request</a></li>
-<li><a href="#_post_add_specific_http_request">HTTP request</a></li>
-<li><a href="#_post_add_specific_http_response">HTTP response</a></li>
-<li><a href="#_post_add_specific_request_fields">Request fields</a></li>
-<li><a href="#_post_add_specific_request_body">Request body</a></li>
-<li><a href="#_post_add_specific_response_body">Response body</a></li>
-<li><a href="#_post_add_specific_response_fields">Response fields</a></li>
+<li><a href="#_post_add_specific_curl_request">11.1. Curl request</a></li>
+<li><a href="#_post_add_specific_http_request">11.2. HTTP request</a></li>
+<li><a href="#_post_add_specific_http_response">11.3. HTTP response</a></li>
+<li><a href="#_post_add_specific_request_fields">11.4. Request fields</a></li>
+<li><a href="#_post_add_specific_request_body">11.5. Request body</a></li>
+<li><a href="#_post_add_specific_response_body">11.6. Response body</a></li>
+<li><a href="#_post_add_specific_response_fields">11.7. Response fields</a></li>
 </ul>
 </li>
-<li><a href="#_post_delete_specific">POST - Delete Specific</a>
+<li><a href="#_post_delete_specific">12. POST - Delete Specific</a>
 <ul class="sectlevel2">
-<li><a href="#_post_delete_specific_curl_request">Curl request</a></li>
-<li><a href="#_post_delete_specific_http_request">HTTP request</a></li>
-<li><a href="#_post_delete_specific_http_response">HTTP response</a></li>
-<li><a href="#_post_delete_specific_request_fields">Request fields</a></li>
-<li><a href="#_post_delete_specific_request_body">Request body</a></li>
-<li><a href="#_post_delete_specific_response_body">Response body</a></li>
-<li><a href="#_post_delete_specific_response_fields">Response fields</a></li>
+<li><a href="#_post_delete_specific_curl_request">12.1. Curl request</a></li>
+<li><a href="#_post_delete_specific_http_request">12.2. HTTP request</a></li>
+<li><a href="#_post_delete_specific_http_response">12.3. HTTP response</a></li>
+<li><a href="#_post_delete_specific_request_fields">12.4. Request fields</a></li>
+<li><a href="#_post_delete_specific_request_body">12.5. Request body</a></li>
+<li><a href="#_post_delete_specific_response_body">12.6. Response body</a></li>
+<li><a href="#_post_delete_specific_response_fields">12.7. Response fields</a></li>
 </ul>
 </li>
 </ul>
@@ -577,13 +578,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_get_find_pokemon_by_id">GET - Find Pokemon By ID</h2>
+<h2 id="_get_find_pokemon_by_id">1. GET - Find Pokemon By ID</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Obtiene un Pokémon en específico. Solo en esta parte de la documentación se documentará todo el objeto Pokémon.</p>
 </div>
 <div class="sect2">
-<h3 id="_get_find_pokemon_by_id_curl_request">Curl request</h3>
+<h3 id="_get_find_pokemon_by_id_curl_request">1.1. Curl request</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ curl 'http://localhost:8090/api/pokemon/1' -i -X GET \
@@ -592,7 +593,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect2">
-<h3 id="_get_find_pokemon_by_id_path_parameters">Path parameters</h3>
+<h3 id="_get_find_pokemon_by_id_path_parameters">1.2. Path parameters</h3>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 1. /api/pokemon/{id}</caption>
 <colgroup>
@@ -614,7 +615,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect2">
-<h3 id="_get_find_pokemon_by_id_http_request">HTTP request</h3>
+<h3 id="_get_find_pokemon_by_id_http_request">1.3. HTTP request</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">GET /api/pokemon/1 HTTP/1.1
@@ -624,7 +625,7 @@ Host: localhost:8090</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_get_find_pokemon_by_id_http_response">HTTP response</h3>
+<h3 id="_get_find_pokemon_by_id_http_response">1.4. HTTP response</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
@@ -685,7 +686,7 @@ Content-Length: 1705
 </div>
 </div>
 <div class="sect2">
-<h3 id="_get_find_pokemon_by_id_response_body">Response body</h3>
+<h3 id="_get_find_pokemon_by_id_response_body">1.5. Response body</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-json hljs" data-lang="json">{
@@ -742,7 +743,7 @@ Content-Length: 1705
 </div>
 </div>
 <div class="sect2">
-<h3 id="_get_find_pokemon_by_id_response_fields">Response fields</h3>
+<h3 id="_get_find_pokemon_by_id_response_fields">1.6. Response fields</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -801,7 +802,7 @@ Content-Length: 1705
 </table>
 </div>
 <div class="sect2">
-<h3 id="_get_find_pokemon_by_id_response_fields-abilities">Response fields-abilities</h3>
+<h3 id="_get_find_pokemon_by_id_response_fields-abilities">1.7. Response fields-abilities</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -840,7 +841,7 @@ Content-Length: 1705
 </table>
 </div>
 <div class="sect2">
-<h3 id="_get_find_pokemon_by_id_response_fields-ability">Response fields-ability</h3>
+<h3 id="_get_find_pokemon_by_id_response_fields-ability">1.8. Response fields-ability</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -874,7 +875,7 @@ Content-Length: 1705
 </table>
 </div>
 <div class="sect2">
-<h3 id="_get_find_pokemon_by_id_response_fields-cries">Response fields-cries</h3>
+<h3 id="_get_find_pokemon_by_id_response_fields-cries">1.9. Response fields-cries</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -908,7 +909,7 @@ Content-Length: 1705
 </table>
 </div>
 <div class="sect2">
-<h3 id="_get_find_pokemon_by_id_response_fields-sprites">Response fields-sprites</h3>
+<h3 id="_get_find_pokemon_by_id_response_fields-sprites">1.10. Response fields-sprites</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -977,7 +978,7 @@ Content-Length: 1705
 </table>
 </div>
 <div class="sect2">
-<h3 id="_get_find_pokemon_by_id_response_fields-other">Response fields-other</h3>
+<h3 id="_get_find_pokemon_by_id_response_fields-other">1.11. Response fields-other</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1006,7 +1007,7 @@ Content-Length: 1705
 </table>
 </div>
 <div class="sect2">
-<h3 id="_get_find_pokemon_by_id_response_fields-official-artwork">Response fields-official-artwork</h3>
+<h3 id="_get_find_pokemon_by_id_response_fields-official-artwork">1.12. Response fields-official-artwork</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1042,13 +1043,13 @@ Content-Length: 1705
 </div>
 </div>
 <div class="sect1">
-<h2 id="_get_find_pokemon_all">GET - Find Pokemon All</h2>
+<h2 id="_get_find_pokemon_all">2. GET - Find Pokemon All</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Obtiene todos los Pokémon. Para simplificar la documentación solo se mostrarán los primeros 3 resultados y se omitirán algunos valores en el objeto Pokémon.</p>
 </div>
 <div class="sect2">
-<h3 id="_get_find_pokemon_all_curl_request">Curl request</h3>
+<h3 id="_get_find_pokemon_all_curl_request">2.1. Curl request</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ curl 'http://localhost:8090/api/pokemon/find/all' -i -X GET</code></pre>
@@ -1056,7 +1057,7 @@ Content-Length: 1705
 </div>
 </div>
 <div class="sect2">
-<h3 id="_get_find_pokemon_all_http_request">HTTP request</h3>
+<h3 id="_get_find_pokemon_all_http_request">2.2. HTTP request</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">GET /api/pokemon/find/all HTTP/1.1
@@ -1065,7 +1066,7 @@ Host: localhost:8090</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_get_find_pokemon_all_http_response">HTTP response</h3>
+<h3 id="_get_find_pokemon_all_http_response">2.3. HTTP response</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
@@ -1104,7 +1105,7 @@ Content-Length: 501
 </div>
 </div>
 <div class="sect2">
-<h3 id="_get_find_pokemon_all_response_body">Response body</h3>
+<h3 id="_get_find_pokemon_all_response_body">2.4. Response body</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-json hljs" data-lang="json">[ {
@@ -1141,13 +1142,13 @@ Content-Length: 501
 </div>
 </div>
 <div class="sect1">
-<h2 id="_get_find_pokemon_by_page">GET - Find Pokemon By Page</h2>
+<h2 id="_get_find_pokemon_by_page">3. GET - Find Pokemon By Page</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Obtiene los Pokémon dependiendo del número de página y cantidad de elementos por páginas. Para simplificar la documentación se omitirán algunos valores en el objeto Pokémon.</p>
 </div>
 <div class="sect2">
-<h3 id="_get_find_pokemon_by_page_curl_request">Curl request</h3>
+<h3 id="_get_find_pokemon_by_page_curl_request">3.1. Curl request</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ curl 'http://localhost:8090/api/pokemon/find?page=1&amp;elements_per_page=3' -i -X GET \
@@ -1156,7 +1157,7 @@ Content-Length: 501
 </div>
 </div>
 <div class="sect2">
-<h3 id="_get_find_pokemon_by_page_query_parameters">Query parameters</h3>
+<h3 id="_get_find_pokemon_by_page_query_parameters">3.2. Query parameters</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -1181,7 +1182,7 @@ Content-Length: 501
 </table>
 </div>
 <div class="sect2">
-<h3 id="_get_find_pokemon_by_page_http_request">HTTP request</h3>
+<h3 id="_get_find_pokemon_by_page_http_request">3.3. HTTP request</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">GET /api/pokemon/find?page=1&amp;elements_per_page=3 HTTP/1.1
@@ -1191,7 +1192,7 @@ Host: localhost:8090</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_get_find_pokemon_by_page_http_response">HTTP response</h3>
+<h3 id="_get_find_pokemon_by_page_http_response">3.4. HTTP response</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
@@ -1234,7 +1235,7 @@ Content-Length: 622
 </div>
 </div>
 <div class="sect2">
-<h3 id="_get_find_pokemon_by_page_response_body">Response body</h3>
+<h3 id="_get_find_pokemon_by_page_response_body">3.5. Response body</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-json hljs" data-lang="json">{
@@ -1273,7 +1274,7 @@ Content-Length: 622
 </div>
 </div>
 <div class="sect2">
-<h3 id="_get_find_pokemon_by_page_response_fields">Response fields</h3>
+<h3 id="_get_find_pokemon_by_page_response_fields">3.6. Response fields</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1307,7 +1308,7 @@ Content-Length: 622
 </table>
 </div>
 <div class="sect2">
-<h3 id="_get_find_pokemon_by_page_response_fields-pokemon">Response fields-pokemon</h3>
+<h3 id="_get_find_pokemon_by_page_response_fields-pokemon">3.7. Response fields-pokemon</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1368,13 +1369,13 @@ Content-Length: 622
 </div>
 </div>
 <div class="sect1">
-<h2 id="_get_find_pokemon_by_filter">GET - Find Pokemon By Filter</h2>
+<h2 id="_get_find_pokemon_by_filter">4. GET - Find Pokemon By Filter</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Obtiene los Pokémon dependiendo del filtro. Si el filtro no coincide con ningun Pokémon entonces se devolvera una lista vacia. Para simplificar la documentación se omitirán algunos valores en el objeto Pokémon.</p>
 </div>
 <div class="sect2">
-<h3 id="_get_find_pokemon_by_filter_curl_request">Curl request</h3>
+<h3 id="_get_find_pokemon_by_filter_curl_request">4.1. Curl request</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ curl 'http://localhost:8090/api/pokemon/find/filter?name=&amp;id=&amp;height_max=7&amp;height_min=&amp;weight_max=&amp;weight_min=&amp;page=1&amp;elements_per_page=3' -i -X GET \
@@ -1383,7 +1384,7 @@ Content-Length: 622
 </div>
 </div>
 <div class="sect2">
-<h3 id="_get_find_pokemon_by_filter_query_parameters">Query parameters</h3>
+<h3 id="_get_find_pokemon_by_filter_query_parameters">4.2. Query parameters</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -1432,7 +1433,7 @@ Content-Length: 622
 </table>
 </div>
 <div class="sect2">
-<h3 id="_get_find_pokemon_by_filter_http_request">HTTP request</h3>
+<h3 id="_get_find_pokemon_by_filter_http_request">4.3. HTTP request</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">GET /api/pokemon/find/filter?name=&amp;id=&amp;height_max=7&amp;height_min=&amp;weight_max=&amp;weight_min=&amp;page=1&amp;elements_per_page=3 HTTP/1.1
@@ -1442,7 +1443,7 @@ Host: localhost:8090</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_get_find_pokemon_by_filter_http_response">HTTP response</h3>
+<h3 id="_get_find_pokemon_by_filter_http_response">4.4. HTTP response</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
@@ -1485,7 +1486,7 @@ Content-Length: 617
 </div>
 </div>
 <div class="sect2">
-<h3 id="_get_find_pokemon_by_filter_response_body">Response body</h3>
+<h3 id="_get_find_pokemon_by_filter_response_body">4.5. Response body</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-json hljs" data-lang="json">{
@@ -1524,7 +1525,7 @@ Content-Length: 617
 </div>
 </div>
 <div class="sect2">
-<h3 id="_get_find_pokemon_by_filter_response_fields">Response fields</h3>
+<h3 id="_get_find_pokemon_by_filter_response_fields">4.6. Response fields</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1558,7 +1559,7 @@ Content-Length: 617
 </table>
 </div>
 <div class="sect2">
-<h3 id="_get_find_pokemon_by_filter_response_fields-pokemon">Response fields-pokemon</h3>
+<h3 id="_get_find_pokemon_by_filter_response_fields-pokemon">4.7. Response fields-pokemon</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1619,13 +1620,13 @@ Content-Length: 617
 </div>
 </div>
 <div class="sect1">
-<h2 id="_get_total_count">GET - Total Count</h2>
+<h2 id="_get_total_count">5. GET - Total Count</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Obtiene el número total de usuarios que tienen de favorito al Pokémon en específico.</p>
 </div>
 <div class="sect2">
-<h3 id="_get_total_count_curl_request">Curl request</h3>
+<h3 id="_get_total_count_curl_request">5.1. Curl request</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ curl 'http://localhost:8090/api/pokemon/total_count/9' -i -X GET \
@@ -1634,7 +1635,7 @@ Content-Length: 617
 </div>
 </div>
 <div class="sect2">
-<h3 id="_get_total_count_path_parameters">Path parameters</h3>
+<h3 id="_get_total_count_path_parameters">5.2. Path parameters</h3>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 1. /api/pokemon/total_count/{id}</caption>
 <colgroup>
@@ -1656,7 +1657,7 @@ Content-Length: 617
 </table>
 </div>
 <div class="sect2">
-<h3 id="_get_total_count_http_request">HTTP request</h3>
+<h3 id="_get_total_count_http_request">5.3. HTTP request</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">GET /api/pokemon/total_count/9 HTTP/1.1
@@ -1666,31 +1667,31 @@ Host: localhost:8090</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_get_total_count_http_response">HTTP response</h3>
+<h3 id="_get_total_count_http_response">5.4. HTTP response</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 26
+Content-Length: 24
 
 {
-  "totalCount" : "2"
+  "totalCount" : 2
 }</code></pre>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_get_total_count_response_body">Response body</h3>
+<h3 id="_get_total_count_response_body">5.5. Response body</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-json hljs" data-lang="json">{
-  "totalCount" : "2"
+  "totalCount" : 2
 }</code></pre>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_get_total_count_response_fields">Response fields</h3>
+<h3 id="_get_total_count_response_fields">5.6. Response fields</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1707,7 +1708,7 @@ Content-Length: 26
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>totalCount</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">El número total de usuarios que tienen de favorito al Pokémon en específico.</p></td>
 </tr>
 </tbody>
@@ -1716,13 +1717,13 @@ Content-Length: 26
 </div>
 </div>
 <div class="sect1">
-<h2 id="_post_add_favorite">POST - Add Favorite</h2>
+<h2 id="_post_add_favorite">6. POST - Add Favorite</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Determina si un usuario tiene de favorito a un Pokémon en específico o no. Equivalente al botón «me gusta» de redes sociales.</p>
 </div>
 <div class="sect2">
-<h3 id="_post_add_favorite_curl_request">Curl request</h3>
+<h3 id="_post_add_favorite_curl_request">6.1. Curl request</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ curl 'http://localhost:8090/api/user/add_favorite' -i -X POST \
@@ -1734,7 +1735,7 @@ Content-Length: 26
 </div>
 </div>
 <div class="sect2">
-<h3 id="_post_add_favorite_http_request">HTTP request</h3>
+<h3 id="_post_add_favorite_http_request">6.2. HTTP request</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /api/user/add_favorite HTTP/1.1
@@ -1749,7 +1750,7 @@ Host: localhost:8090
 </div>
 </div>
 <div class="sect2">
-<h3 id="_post_add_favorite_http_response">HTTP response</h3>
+<h3 id="_post_add_favorite_http_response">6.3. HTTP response</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
@@ -1763,7 +1764,7 @@ Content-Length: 27
 </div>
 </div>
 <div class="sect2">
-<h3 id="_post_add_favorite_request_fields">Request fields</h3>
+<h3 id="_post_add_favorite_request_fields">6.4. Request fields</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1787,7 +1788,7 @@ Content-Length: 27
 </table>
 </div>
 <div class="sect2">
-<h3 id="_post_add_favorite_request_body">Request body</h3>
+<h3 id="_post_add_favorite_request_body">6.5. Request body</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-json hljs" data-lang="json">{
@@ -1797,7 +1798,7 @@ Content-Length: 27
 </div>
 </div>
 <div class="sect2">
-<h3 id="_post_add_favorite_response_body">Response body</h3>
+<h3 id="_post_add_favorite_response_body">6.6. Response body</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-json hljs" data-lang="json">{
@@ -1807,7 +1808,7 @@ Content-Length: 27
 </div>
 </div>
 <div class="sect2">
-<h3 id="_post_add_favorite_response_fields">Response fields</h3>
+<h3 id="_post_add_favorite_response_fields">6.7. Response fields</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1833,13 +1834,13 @@ Content-Length: 27
 </div>
 </div>
 <div class="sect1">
-<h2 id="_get_find_favorites">GET - Find Favorites</h2>
+<h2 id="_get_find_favorites">7. GET - Find Favorites</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Obtiene todos los Pokémon favoritos del usuario autenticado.</p>
 </div>
 <div class="sect2">
-<h3 id="_get_find_favorites_curl_request">Curl request</h3>
+<h3 id="_get_find_favorites_curl_request">7.1. Curl request</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ curl 'http://localhost:8090/api/user/find_favorites' -i -X GET \
@@ -1848,7 +1849,7 @@ Content-Length: 27
 </div>
 </div>
 <div class="sect2">
-<h3 id="_get_find_favorites_http_request">HTTP request</h3>
+<h3 id="_get_find_favorites_http_request">7.2. HTTP request</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">GET /api/user/find_favorites HTTP/1.1
@@ -1858,7 +1859,7 @@ Host: localhost:8090</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_get_find_favorites_http_response">HTTP response</h3>
+<h3 id="_get_find_favorites_http_response">7.3. HTTP response</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
@@ -1891,7 +1892,7 @@ Content-Length: 383
 </div>
 </div>
 <div class="sect2">
-<h3 id="_get_find_favorites_response_body">Response body</h3>
+<h3 id="_get_find_favorites_response_body">7.4. Response body</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-json hljs" data-lang="json">[ {
@@ -1920,7 +1921,7 @@ Content-Length: 383
 </div>
 </div>
 <div class="sect2">
-<h3 id="_get_find_favorites_response_fields-favorite">Response fields-favorite</h3>
+<h3 id="_get_find_favorites_response_fields-favorite">7.5. Response fields-favorite</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1951,13 +1952,13 @@ Content-Length: 383
 </div>
 </div>
 <div class="sect1">
-<h2 id="_get_is_user_favorite">GET - Is User Favorite</h2>
+<h2 id="_get_is_user_favorite">8. GET - Is User Favorite</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Obtiene un valor booleano que determina si un usuario tiene de favorito a un Pokémon en específico o no.</p>
 </div>
 <div class="sect2">
-<h3 id="_get_is_user_favorite_curl_request">Curl request</h3>
+<h3 id="_get_is_user_favorite_curl_request">8.1. Curl request</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ curl 'http://localhost:8090/api/user/is_user_favorite/5' -i -X GET \
@@ -1966,7 +1967,7 @@ Content-Length: 383
 </div>
 </div>
 <div class="sect2">
-<h3 id="_get_is_user_favorite_path_parameters">Path parameters</h3>
+<h3 id="_get_is_user_favorite_path_parameters">8.2. Path parameters</h3>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 1. /api/user/is_user_favorite/{id}</caption>
 <colgroup>
@@ -1988,7 +1989,7 @@ Content-Length: 383
 </table>
 </div>
 <div class="sect2">
-<h3 id="_get_is_user_favorite_http_request">HTTP request</h3>
+<h3 id="_get_is_user_favorite_http_request">8.3. HTTP request</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">GET /api/user/is_user_favorite/5 HTTP/1.1
@@ -1998,7 +1999,7 @@ Host: localhost:8090</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_get_is_user_favorite_http_response">HTTP response</h3>
+<h3 id="_get_is_user_favorite_http_response">8.4. HTTP response</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
@@ -2012,7 +2013,7 @@ Content-Length: 28
 </div>
 </div>
 <div class="sect2">
-<h3 id="_get_is_user_favorite_response_body">Response body</h3>
+<h3 id="_get_is_user_favorite_response_body">8.5. Response body</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-json hljs" data-lang="json">{
@@ -2022,7 +2023,7 @@ Content-Length: 28
 </div>
 </div>
 <div class="sect2">
-<h3 id="_get_is_user_favorite_response_fields">Response fields</h3>
+<h3 id="_get_is_user_favorite_response_fields">8.6. Response fields</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -2048,13 +2049,13 @@ Content-Length: 28
 </div>
 </div>
 <div class="sect1">
-<h2 id="_post_add_group">POST - Add Group</h2>
+<h2 id="_post_add_group">9. POST - Add Group</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Agrega un grupo de Pokémon.</p>
 </div>
 <div class="sect2">
-<h3 id="_post_add_group_curl_request">Curl request</h3>
+<h3 id="_post_add_group_curl_request">9.1. Curl request</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ curl 'http://localhost:8090/api/admin/add_group' -i -X POST \
@@ -2067,7 +2068,7 @@ Content-Length: 28
 </div>
 </div>
 <div class="sect2">
-<h3 id="_post_add_group_http_request">HTTP request</h3>
+<h3 id="_post_add_group_http_request">9.2. HTTP request</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /api/admin/add_group HTTP/1.1
@@ -2083,7 +2084,7 @@ Host: localhost:8090
 </div>
 </div>
 <div class="sect2">
-<h3 id="_post_add_group_http_response">HTTP response</h3>
+<h3 id="_post_add_group_http_response">9.3. HTTP response</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
@@ -2097,7 +2098,7 @@ Content-Length: 19
 </div>
 </div>
 <div class="sect2">
-<h3 id="_post_add_group_request_fields">Request fields</h3>
+<h3 id="_post_add_group_request_fields">9.4. Request fields</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -2126,7 +2127,7 @@ Content-Length: 19
 </table>
 </div>
 <div class="sect2">
-<h3 id="_post_add_group_request_body">Request body</h3>
+<h3 id="_post_add_group_request_body">9.5. Request body</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-json hljs" data-lang="json">{
@@ -2137,7 +2138,7 @@ Content-Length: 19
 </div>
 </div>
 <div class="sect2">
-<h3 id="_post_add_group_response_body">Response body</h3>
+<h3 id="_post_add_group_response_body">9.6. Response body</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-json hljs" data-lang="json">{
@@ -2147,7 +2148,7 @@ Content-Length: 19
 </div>
 </div>
 <div class="sect2">
-<h3 id="_post_add_group_response_fields">Response fields</h3>
+<h3 id="_post_add_group_response_fields">9.7. Response fields</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -2173,13 +2174,13 @@ Content-Length: 19
 </div>
 </div>
 <div class="sect1">
-<h2 id="_post_delete_group">POST - Delete Group</h2>
+<h2 id="_post_delete_group">10. POST - Delete Group</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Elimina un grupo de Pokémon.</p>
 </div>
 <div class="sect2">
-<h3 id="_post_delete_group_curl_request">Curl request</h3>
+<h3 id="_post_delete_group_curl_request">10.1. Curl request</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ curl 'http://localhost:8090/api/admin/delete_group' -i -X POST \
@@ -2192,7 +2193,7 @@ Content-Length: 19
 </div>
 </div>
 <div class="sect2">
-<h3 id="_post_delete_group_http_request">HTTP request</h3>
+<h3 id="_post_delete_group_http_request">10.2. HTTP request</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /api/admin/delete_group HTTP/1.1
@@ -2208,7 +2209,7 @@ Host: localhost:8090
 </div>
 </div>
 <div class="sect2">
-<h3 id="_post_delete_group_http_response">HTTP response</h3>
+<h3 id="_post_delete_group_http_response">10.3. HTTP response</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
@@ -2222,7 +2223,7 @@ Content-Length: 19
 </div>
 </div>
 <div class="sect2">
-<h3 id="_post_delete_group_request_fields">Request fields</h3>
+<h3 id="_post_delete_group_request_fields">10.4. Request fields</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -2251,7 +2252,7 @@ Content-Length: 19
 </table>
 </div>
 <div class="sect2">
-<h3 id="_post_delete_group_request_body">Request body</h3>
+<h3 id="_post_delete_group_request_body">10.5. Request body</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-json hljs" data-lang="json">{
@@ -2262,7 +2263,7 @@ Content-Length: 19
 </div>
 </div>
 <div class="sect2">
-<h3 id="_post_delete_group_response_body">Response body</h3>
+<h3 id="_post_delete_group_response_body">10.6. Response body</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-json hljs" data-lang="json">{
@@ -2272,7 +2273,7 @@ Content-Length: 19
 </div>
 </div>
 <div class="sect2">
-<h3 id="_post_delete_group_response_fields">Response fields</h3>
+<h3 id="_post_delete_group_response_fields">10.7. Response fields</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -2298,13 +2299,13 @@ Content-Length: 19
 </div>
 </div>
 <div class="sect1">
-<h2 id="_post_add_specific">POST - Add Specific</h2>
+<h2 id="_post_add_specific">11. POST - Add Specific</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Agrega un Pokémon en específico.</p>
 </div>
 <div class="sect2">
-<h3 id="_post_add_specific_curl_request">Curl request</h3>
+<h3 id="_post_add_specific_curl_request">11.1. Curl request</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ curl 'http://localhost:8090/api/admin/add_specific' -i -X POST \
@@ -2317,7 +2318,7 @@ Content-Length: 19
 </div>
 </div>
 <div class="sect2">
-<h3 id="_post_add_specific_http_request">HTTP request</h3>
+<h3 id="_post_add_specific_http_request">11.2. HTTP request</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /api/admin/add_specific HTTP/1.1
@@ -2333,7 +2334,7 @@ Host: localhost:8090
 </div>
 </div>
 <div class="sect2">
-<h3 id="_post_add_specific_http_response">HTTP response</h3>
+<h3 id="_post_add_specific_http_response">11.3. HTTP response</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
@@ -2347,7 +2348,7 @@ Content-Length: 19
 </div>
 </div>
 <div class="sect2">
-<h3 id="_post_add_specific_request_fields">Request fields</h3>
+<h3 id="_post_add_specific_request_fields">11.4. Request fields</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -2376,7 +2377,7 @@ Content-Length: 19
 </table>
 </div>
 <div class="sect2">
-<h3 id="_post_add_specific_request_body">Request body</h3>
+<h3 id="_post_add_specific_request_body">11.5. Request body</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-json hljs" data-lang="json">{
@@ -2387,7 +2388,7 @@ Content-Length: 19
 </div>
 </div>
 <div class="sect2">
-<h3 id="_post_add_specific_response_body">Response body</h3>
+<h3 id="_post_add_specific_response_body">11.6. Response body</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-json hljs" data-lang="json">{
@@ -2397,7 +2398,7 @@ Content-Length: 19
 </div>
 </div>
 <div class="sect2">
-<h3 id="_post_add_specific_response_fields">Response fields</h3>
+<h3 id="_post_add_specific_response_fields">11.7. Response fields</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -2423,13 +2424,13 @@ Content-Length: 19
 </div>
 </div>
 <div class="sect1">
-<h2 id="_post_delete_specific">POST - Delete Specific</h2>
+<h2 id="_post_delete_specific">12. POST - Delete Specific</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Elimina un Pokémon en específico.</p>
 </div>
 <div class="sect2">
-<h3 id="_post_delete_specific_curl_request">Curl request</h3>
+<h3 id="_post_delete_specific_curl_request">12.1. Curl request</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ curl 'http://localhost:8090/api/admin/delete_specific' -i -X POST \
@@ -2442,7 +2443,7 @@ Content-Length: 19
 </div>
 </div>
 <div class="sect2">
-<h3 id="_post_delete_specific_http_request">HTTP request</h3>
+<h3 id="_post_delete_specific_http_request">12.2. HTTP request</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /api/admin/delete_specific HTTP/1.1
@@ -2458,7 +2459,7 @@ Host: localhost:8090
 </div>
 </div>
 <div class="sect2">
-<h3 id="_post_delete_specific_http_response">HTTP response</h3>
+<h3 id="_post_delete_specific_http_response">12.3. HTTP response</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
@@ -2472,7 +2473,7 @@ Content-Length: 19
 </div>
 </div>
 <div class="sect2">
-<h3 id="_post_delete_specific_request_fields">Request fields</h3>
+<h3 id="_post_delete_specific_request_fields">12.4. Request fields</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -2501,7 +2502,7 @@ Content-Length: 19
 </table>
 </div>
 <div class="sect2">
-<h3 id="_post_delete_specific_request_body">Request body</h3>
+<h3 id="_post_delete_specific_request_body">12.5. Request body</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-json hljs" data-lang="json">{
@@ -2512,7 +2513,7 @@ Content-Length: 19
 </div>
 </div>
 <div class="sect2">
-<h3 id="_post_delete_specific_response_body">Response body</h3>
+<h3 id="_post_delete_specific_response_body">12.6. Response body</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-json hljs" data-lang="json">{
@@ -2522,7 +2523,7 @@ Content-Length: 19
 </div>
 </div>
 <div class="sect2">
-<h3 id="_post_delete_specific_response_fields">Response fields</h3>
+<h3 id="_post_delete_specific_response_fields">12.7. Response fields</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -2550,7 +2551,7 @@ Content-Length: 19
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-11-05 20:45:32 -0400
+Last updated 2025-11-16 08:28:18 -0400
 </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>

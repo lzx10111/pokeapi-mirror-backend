@@ -1,10 +1,12 @@
 package com.example.pokeapi_mirror.service;
 
+import com.example.pokeapi_mirror.model.entity.FavoriteCount;
 import com.example.pokeapi_mirror.model.entity.Pokemon;
 import com.example.pokeapi_mirror.model.util.MessageType;
 import com.example.pokeapi_mirror.model.util.PageResult;
 import com.example.pokeapi_mirror.model.util.SearchPokemon;
 import com.example.pokeapi_mirror.model.util.SimpleMessage;
+import com.example.pokeapi_mirror.repository.FavoriteCountRepository;
 import com.example.pokeapi_mirror.repository.FavoriteRepository;
 import com.example.pokeapi_mirror.repository.PokemonRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -37,6 +39,7 @@ public class PokemonService {
     private final MessageSource messageSource;
     private final PokemonRepository pokemonRepository;
     private final FavoriteRepository favoriteRepository;
+    private final FavoriteCountRepository favoriteCountRepository;
     
     @Value("${pokeapi.base-url}")
     private String pokeapi_base_url;
@@ -45,12 +48,13 @@ public class PokemonService {
     @Value("${pokeapi.total.offline}")
     private String pokeapi_total_offline;
 
-	public PokemonService(RestTemplate restTemplate, MessageSource messageSource, PokemonRepository pokemonRepository,
-            FavoriteRepository favoriteRepository) {
+    public PokemonService(RestTemplate restTemplate, MessageSource messageSource, PokemonRepository pokemonRepository,
+            FavoriteRepository favoriteRepository, FavoriteCountRepository favoriteCountRepository) {
         this.restTemplate = restTemplate;
         this.messageSource = messageSource;
         this.pokemonRepository = pokemonRepository;
         this.favoriteRepository = favoriteRepository;
+        this.favoriteCountRepository = favoriteCountRepository;
     }
 
     public String getTotalCountPokeAPI() {
@@ -202,6 +206,10 @@ public class PokemonService {
     public Optional<Pokemon> getPokemonByID(Integer id) {
 
         return pokemonRepository.findById(id);
+    }
+
+    public Optional<FavoriteCount> getFavoriteCountByID(Integer id) {
+        return favoriteCountRepository.findById(id);
     }
     
     public Long getTotalCountSpecificPokemonFavorite(String id) {
