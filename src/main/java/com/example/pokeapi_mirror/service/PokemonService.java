@@ -2,7 +2,6 @@ package com.example.pokeapi_mirror.service;
 
 import com.example.pokeapi_mirror.model.entity.FavoriteCount;
 import com.example.pokeapi_mirror.model.entity.Pokemon;
-import com.example.pokeapi_mirror.model.util.MessageType;
 import com.example.pokeapi_mirror.model.util.PageResult;
 import com.example.pokeapi_mirror.model.util.SearchPokemon;
 import com.example.pokeapi_mirror.model.util.SimpleMessage;
@@ -255,21 +254,25 @@ public class PokemonService {
     	
     	return pokemonRepository.existsByName(name);
     }
+
+    public SimpleMessage findPokemonByIDHasErrors(String id, Locale locale) {
+        return new SimpleMessage("id", id, messageSource.getMessage("group.start.required", null, locale));
+    }
     
     public List<SimpleMessage> addGroupHasErrors(String groupStart, String groupEnd, String fieldName1, String fieldName2, Locale locale) {
     	List<SimpleMessage> errors = new ArrayList<>();
     	
     	if (!(existsByIdPokeAPI(groupStart))) {
-    		errors.add(new SimpleMessage(fieldName1, groupStart, messageSource.getMessage("group.start.required", null, locale), MessageType.ERROR));
+    		errors.add(new SimpleMessage(fieldName1, groupStart, messageSource.getMessage("group.start.required", null, locale)));
         }
     	
     	if (!(existsByIdPokeAPI(groupEnd))) {
-    		errors.add(new SimpleMessage(fieldName2, groupEnd, messageSource.getMessage("group.end.required", null, locale), MessageType.ERROR));
+    		errors.add(new SimpleMessage(fieldName2, groupEnd, messageSource.getMessage("group.end.required", null, locale)));
         }
     	
     	if (Integer.parseInt(groupStart) >= Integer.parseInt(groupEnd)) {
     		errors.add(new SimpleMessage("group", String.join(", ", groupStart, groupEnd), 
-    				messageSource.getMessage("group.range.type", null, locale), MessageType.ERROR));
+    				messageSource.getMessage("group.range.type", null, locale)));
     	}
     	
     	if (!errors.isEmpty()) {
@@ -284,7 +287,7 @@ public class PokemonService {
     	}
     	
     	if (!s.isEmpty()) {
-    		errors.add(new SimpleMessage("group", s.substring(0, s.length() - 2), messageSource.getMessage("group.add.conflict", null, locale), MessageType.ERROR));
+    		errors.add(new SimpleMessage("group", s.substring(0, s.length() - 2), messageSource.getMessage("group.add.conflict", null, locale)));
             return errors;
         }
     	
@@ -296,16 +299,16 @@ public class PokemonService {
     	List<SimpleMessage> errors = new ArrayList<>();
     	
     	if (!existsPokemonById(groupStart)) {
-    		errors.add(new SimpleMessage(fieldName1, groupStart, messageSource.getMessage("group.start.required", null, locale), MessageType.ERROR));
+    		errors.add(new SimpleMessage(fieldName1, groupStart, messageSource.getMessage("group.start.required", null, locale)));
         }
     	
     	if (!existsPokemonById(groupEnd)) {
-    		errors.add(new SimpleMessage(fieldName2, groupEnd, messageSource.getMessage("group.end.required", null, locale), MessageType.ERROR));
+    		errors.add(new SimpleMessage(fieldName2, groupEnd, messageSource.getMessage("group.end.required", null, locale)));
         }
     	
     	if (Integer.parseInt(groupStart) >= Integer.parseInt(groupEnd)) {
     		errors.add(new SimpleMessage("group", String.join(", ", groupStart, groupEnd), 
-    				messageSource.getMessage("group.range.type", null, locale), MessageType.ERROR));
+    				messageSource.getMessage("group.range.type", null, locale)));
     	}
 
         if (!errors.isEmpty()) {
@@ -319,16 +322,16 @@ public class PokemonService {
     	List<SimpleMessage> errors = new ArrayList<>();
 
     	if (id.isEmpty() && name.isEmpty()) {
-    		errors.add(new SimpleMessage("specific", null, messageSource.getMessage("specific.fields.notempty", null, locale), MessageType.ERROR));
+    		errors.add(new SimpleMessage("specific", null, messageSource.getMessage("specific.fields.notempty", null, locale)));
     		return errors;
     	}
     	
     	if (existsPokemonById(id)) {
-    		errors.add(new SimpleMessage(fieldName1, id, messageSource.getMessage("specific.fields.conflict", null, locale), MessageType.ERROR));
+    		errors.add(new SimpleMessage(fieldName1, id, messageSource.getMessage("specific.fields.conflict", null, locale)));
     	}
     	
     	if (existsPokemonByName(name)) {
-    		errors.add(new SimpleMessage(fieldName2, name, messageSource.getMessage("specific.fields.conflict", null, locale), MessageType.ERROR));
+    		errors.add(new SimpleMessage(fieldName2, name, messageSource.getMessage("specific.fields.conflict", null, locale)));
     	}
     	
     	if (!errors.isEmpty()) {
@@ -336,11 +339,11 @@ public class PokemonService {
     	}
     	
     	if (!existsByIdPokeAPI(id) && !id.isEmpty()) {
-    		errors.add(new SimpleMessage(fieldName1, id, messageSource.getMessage("specific.id.required", null, locale), MessageType.ERROR));
+    		errors.add(new SimpleMessage(fieldName1, id, messageSource.getMessage("specific.id.required", null, locale)));
         }
     	
     	if (!existsByNamePokeAPI(name) && !name.isEmpty()) {
-    		errors.add(new SimpleMessage(fieldName2, name, messageSource.getMessage("specific.name.required", null, locale), MessageType.ERROR));
+    		errors.add(new SimpleMessage(fieldName2, name, messageSource.getMessage("specific.name.required", null, locale)));
         }
     	
     	if (!(id.isEmpty() && name.isEmpty()) && !errors.isEmpty()) {
@@ -349,7 +352,7 @@ public class PokemonService {
     	
     	Pokemon pokemon = getPokemonByIdPokeAPI(id);
     	if (!pokemon.getName().equalsIgnoreCase(name) && !name.isEmpty()) {
-    		errors.add(new SimpleMessage("specific", String.join(", ", id, name), messageSource.getMessage("specific.fields.notfound", null, locale), MessageType.ERROR));
+    		errors.add(new SimpleMessage("specific", String.join(", ", id, name), messageSource.getMessage("specific.fields.notfound", null, locale)));
             return errors;
         }
     	
@@ -360,16 +363,16 @@ public class PokemonService {
     	List<SimpleMessage> errors = new ArrayList<>();
 
     	if (id.isEmpty() && name.isEmpty()) {
-    		errors.add(new SimpleMessage("specific", null, messageSource.getMessage("specific.fields.notempty", null, locale), MessageType.ERROR));
+    		errors.add(new SimpleMessage("specific", null, messageSource.getMessage("specific.fields.notempty", null, locale)));
     		return errors;
     	}
     	
     	if (!existsPokemonById(id) && !id.isEmpty()) {
-    		errors.add(new SimpleMessage(fieldName1, id, messageSource.getMessage("specific.id.notfound", null, locale), MessageType.ERROR));
+    		errors.add(new SimpleMessage(fieldName1, id, messageSource.getMessage("specific.id.notfound", null, locale)));
         }
     	
     	if (!existsPokemonByName(name) && !name.isEmpty()) {
-    		errors.add(new SimpleMessage(fieldName2, name, messageSource.getMessage("specific.name.notfound", null, locale), MessageType.ERROR));
+    		errors.add(new SimpleMessage(fieldName2, name, messageSource.getMessage("specific.name.notfound", null, locale)));
         }
     	
     	if (!(id.isEmpty() && name.isEmpty()) && !errors.isEmpty()) {
@@ -378,7 +381,7 @@ public class PokemonService {
     	
     	Pokemon pokemon = getPokemonByID(Integer.parseInt(id)).get();
     	if (!pokemon.getName().equalsIgnoreCase(name) && !name.isEmpty()) {
-    		errors.add(new SimpleMessage("specific", String.join(", ", id, name), messageSource.getMessage("specific.fields.notfound", null, locale), MessageType.ERROR));
+    		errors.add(new SimpleMessage("specific", String.join(", ", id, name), messageSource.getMessage("specific.fields.notfound", null, locale)));
             return errors;
         }
     	

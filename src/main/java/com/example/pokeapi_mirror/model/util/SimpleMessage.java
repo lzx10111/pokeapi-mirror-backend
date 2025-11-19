@@ -7,27 +7,23 @@ public class SimpleMessage {
 	private String fieldName;
 	private String fieldValue;
 	private List<String> fieldMsg;
-	private MessageType messageType;
 	
-	public SimpleMessage(String fieldName, String fieldValue, List<String> fieldMsg, MessageType messageType) {
+	public SimpleMessage(String fieldName, String fieldValue, List<String> fieldMsg) {
 		this.fieldName = fieldName;
 		this.fieldValue = fieldValue;
 		this.fieldMsg = fieldMsg;
-		this.messageType = messageType;
 	}
 	
-	public SimpleMessage(String fieldName, String fieldValue, String fieldMsg, MessageType messageType) {
+	public SimpleMessage(String fieldName, String fieldValue, String fieldMsg) {
 		this.fieldName = fieldName;
 		this.fieldValue = fieldValue;
 		this.fieldMsg = Arrays.asList(fieldMsg);
-		this.messageType = messageType;
 	}
 	
-	public SimpleMessage(String fieldName, String fieldMsg, MessageType messageType) {
+	public SimpleMessage(String fieldName, String fieldMsg) {
 		this.fieldName = fieldName;
 		this.fieldValue = null;
 		this.fieldMsg = Arrays.asList(fieldMsg);
-		this.messageType = messageType;
 	}
 
 	public String getFieldName() {
@@ -47,13 +43,5 @@ public class SimpleMessage {
 	}
 	public void setFieldMsg(List<String> fieldMsg) {
 		this.fieldMsg = fieldMsg;
-	}
-
-	public MessageType getMessageType() {
-		return messageType;
-	}
-
-	public void setMessageType(MessageType messageType) {
-		this.messageType = messageType;
 	}
 }

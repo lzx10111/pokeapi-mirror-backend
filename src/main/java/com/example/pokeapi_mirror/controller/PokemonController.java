@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.pokeapi_mirror.annotation.IntegerPositive;
 import com.example.pokeapi_mirror.model.entity.FavoriteCount;
 import com.example.pokeapi_mirror.model.entity.Pokemon;
-import com.example.pokeapi_mirror.model.util.MessageType;
 import com.example.pokeapi_mirror.model.util.SearchPokemon;
 import com.example.pokeapi_mirror.model.util.SimpleMessage;
 import com.example.pokeapi_mirror.service.PokemonService;
@@ -70,7 +69,7 @@ public class PokemonController {
         
         Optional<Pokemon> pokemon = pokemonService.getPokemonByID(Integer.parseInt(id));
         if (!pokemon.isPresent()) {
-        	return new ResponseEntity<>(new SimpleMessage("id", id, "Pokemon no encontrado.", MessageType.ERROR), HttpStatus.NOT_FOUND);
+        	return new ResponseEntity<>(new SimpleMessage("id", id, "Pokemon no encontrado."), HttpStatus.NOT_FOUND);
         }
 		
 		return new ResponseEntity<>(pokemon.get(), HttpStatus.OK);
@@ -84,7 +83,7 @@ public class PokemonController {
     	@Size(max = 5, message = "{id.size}") String id) {
 
         if (!pokemonService.existsPokemonById(id)) {
-        	return new ResponseEntity<>(new SimpleMessage("id", id, "Pokemon no encontrado", MessageType.ERROR), HttpStatus.NOT_FOUND);
+        	return new ResponseEntity<>(new SimpleMessage("id", id, "Pokemon no encontrado"), HttpStatus.NOT_FOUND);
         }
         
 		Optional<FavoriteCount> favoriteCount = pokemonService.getFavoriteCountByID(Integer.parseInt(id));

@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.pokeapi_mirror.annotation.IntegerPositive;
 import com.example.pokeapi_mirror.model.entity.Favorite;
-import com.example.pokeapi_mirror.model.util.MessageType;
 import com.example.pokeapi_mirror.model.util.PokemonId;
 import com.example.pokeapi_mirror.model.util.SimpleMessage;
 import com.example.pokeapi_mirror.service.UserService;
@@ -41,7 +40,7 @@ public class UserController {
 	@PostMapping("/add_favorite")
 	public ResponseEntity<?> addFavorite(@RequestBody @Valid PokemonId pokemonId, @AuthenticationPrincipal Jwt jwt) {
 		if (!userService.existsPokemonById(Integer.parseInt(pokemonId.getId()))) {
-			return new ResponseEntity<>(new SimpleMessage("pokemonId", pokemonId.getId().toString(), "Pokemon no encontrado.", MessageType.ERROR), HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(new SimpleMessage("pokemonId", pokemonId.getId().toString(), "Pokemon no encontrado."), HttpStatus.NOT_FOUND);
 		}
 		
 		HashMap<String, Boolean> map = new HashMap<String, Boolean>();

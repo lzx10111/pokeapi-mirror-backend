@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import com.example.pokeapi_mirror.model.util.MessageType;
 import com.example.pokeapi_mirror.model.util.SimpleMessage;
 
 import jakarta.validation.ConstraintViolation;
@@ -60,7 +59,7 @@ public class MyCustomResponseEntityExceptionHandler extends ResponseEntityExcept
 	        
 	        for (int i=0; i < listFields.size(); i++) {
 	        	if (!listMsgField.get(i).isEmpty()) {
-	        		errors.add(new SimpleMessage(listFields.get(i), listInvalidField.get(i), listMsgField.get(i), MessageType.ERROR));
+	        		errors.add(new SimpleMessage(listFields.get(i), listInvalidField.get(i), listMsgField.get(i)));
 	        	}
 	        }
 	           
@@ -99,7 +98,7 @@ public class MyCustomResponseEntityExceptionHandler extends ResponseEntityExcept
 		}
 		
 		for (int i=0; i < listFields.size(); i++) {
-			errors.add(new SimpleMessage(listFields.get(i), listInvalidField.get(i), listMsgField.get(i), MessageType.ERROR));
+			errors.add(new SimpleMessage(listFields.get(i), listInvalidField.get(i), listMsgField.get(i)));
         }
 
 		return new ResponseEntity<>(errors, null, HttpStatus.BAD_REQUEST);
