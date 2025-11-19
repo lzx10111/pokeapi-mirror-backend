@@ -30,10 +30,10 @@ public class AdminController {
 
 	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping("/add_group")
-	public ResponseEntity<?> addGroup(@RequestBody @Valid PokemonGroup addGroup) {
+	public ResponseEntity<?> addGroup(@RequestBody @Valid PokemonGroup addGroup, Locale locale) {
 		List<SimpleMessage> errors = pokemonService.addGroupHasErrors(addGroup.getStart(),
 				addGroup.getEnd(), "addGroupStart",
-				"addGroupEnd");
+				"addGroupEnd", locale);
 
 		if (!errors.isEmpty()) {
 			return new ResponseEntity<>(errors, HttpStatus.UNPROCESSABLE_ENTITY);
@@ -48,10 +48,10 @@ public class AdminController {
 
 	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping("/delete_group")
-	public ResponseEntity<?> deleteGroup(@RequestBody @Valid PokemonGroup deleteGroup) {
+	public ResponseEntity<?> deleteGroup(@RequestBody @Valid PokemonGroup deleteGroup, Locale locale) {
 		List<SimpleMessage> errors = pokemonService.deleteGroupHasErrors(deleteGroup.getStart(),
 				deleteGroup.getEnd(), "deleteGroupStart",
-				"deleteGroupEnd");
+				"deleteGroupEnd", locale);
 
 		if (!errors.isEmpty()) {
 			return new ResponseEntity<>(errors, HttpStatus.UNPROCESSABLE_ENTITY);
@@ -88,10 +88,10 @@ public class AdminController {
 
 	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping("/delete_specific")
-	public ResponseEntity<?> deleteSpecific(@RequestBody @Valid PokemonSpecific deleteSpecific) {
+	public ResponseEntity<?> deleteSpecific(@RequestBody @Valid PokemonSpecific deleteSpecific, Locale locale) {
 		List<SimpleMessage> errors = pokemonService.deleteSpecificHasErrors(deleteSpecific.getId(),
 				deleteSpecific.getName(), "deleteSpecificId",
-				"deleteSpecificName");
+				"deleteSpecificName", locale);
 
 		if (!errors.isEmpty()) {
 			return new ResponseEntity<>(errors, HttpStatus.UNPROCESSABLE_ENTITY);

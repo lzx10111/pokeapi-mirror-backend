@@ -256,20 +256,20 @@ public class PokemonService {
     	return pokemonRepository.existsByName(name);
     }
     
-    public List<SimpleMessage> addGroupHasErrors(String groupStart, String groupEnd, String fieldName1, String fieldName2) {
+    public List<SimpleMessage> addGroupHasErrors(String groupStart, String groupEnd, String fieldName1, String fieldName2, Locale locale) {
     	List<SimpleMessage> errors = new ArrayList<>();
     	
     	if (!(existsByIdPokeAPI(groupStart))) {
-    		errors.add(new SimpleMessage(fieldName1, groupStart, "Pokemon no encontrado", MessageType.ERROR));
+    		errors.add(new SimpleMessage(fieldName1, groupStart, messageSource.getMessage("group.start.required", null, locale), MessageType.ERROR));
         }
     	
     	if (!(existsByIdPokeAPI(groupEnd))) {
-    		errors.add(new SimpleMessage(fieldName2, groupEnd, "Pokemon no encontrado", MessageType.ERROR));
+    		errors.add(new SimpleMessage(fieldName2, groupEnd, messageSource.getMessage("group.end.required", null, locale), MessageType.ERROR));
         }
     	
     	if (Integer.parseInt(groupStart) >= Integer.parseInt(groupEnd)) {
     		errors.add(new SimpleMessage("group", String.join(", ", groupStart, groupEnd), 
-    				"'Desde' no puede ser mayor o igual que 'Hasta'", MessageType.ERROR));
+    				messageSource.getMessage("group.range.type", null, locale), MessageType.ERROR));
     	}
     	
     	if (!errors.isEmpty()) {
@@ -284,7 +284,7 @@ public class PokemonService {
     	}
     	
     	if (!s.isEmpty()) {
-    		errors.add(new SimpleMessage("group", s.substring(0, s.length() - 2), "Pokemon ya existe en la base de datos", MessageType.ERROR));
+    		errors.add(new SimpleMessage("group", s.substring(0, s.length() - 2), messageSource.getMessage("group.add.conflict", null, locale), MessageType.ERROR));
             return errors;
         }
     	
@@ -292,20 +292,20 @@ public class PokemonService {
     }
     
     
-    public List<SimpleMessage> deleteGroupHasErrors(String groupStart, String groupEnd, String fieldName1, String fieldName2) {
+    public List<SimpleMessage> deleteGroupHasErrors(String groupStart, String groupEnd, String fieldName1, String fieldName2, Locale locale) {
     	List<SimpleMessage> errors = new ArrayList<>();
     	
     	if (!existsPokemonById(groupStart)) {
-    		errors.add(new SimpleMessage(fieldName1, groupStart, "Pokemon no encontrado", MessageType.ERROR));
+    		errors.add(new SimpleMessage(fieldName1, groupStart, messageSource.getMessage("group.start.required", null, locale), MessageType.ERROR));
         }
     	
     	if (!existsPokemonById(groupEnd)) {
-    		errors.add(new SimpleMessage(fieldName2, groupEnd, "Pokemon no encontrado", MessageType.ERROR));
+    		errors.add(new SimpleMessage(fieldName2, groupEnd, messageSource.getMessage("group.end.required", null, locale), MessageType.ERROR));
         }
     	
     	if (Integer.parseInt(groupStart) >= Integer.parseInt(groupEnd)) {
     		errors.add(new SimpleMessage("group", String.join(", ", groupStart, groupEnd), 
-    				"'Desde' no puede ser mayor o igual que 'Hasta'", MessageType.ERROR));
+    				messageSource.getMessage("group.range.type", null, locale), MessageType.ERROR));
     	}
 
         if (!errors.isEmpty()) {
@@ -356,20 +356,20 @@ public class PokemonService {
         return Collections.emptyList();
     }
     
-    public List<SimpleMessage> deleteSpecificHasErrors(String id, String name, String fieldName1, String fieldName2) {
+    public List<SimpleMessage> deleteSpecificHasErrors(String id, String name, String fieldName1, String fieldName2, Locale locale) {
     	List<SimpleMessage> errors = new ArrayList<>();
 
     	if (id.isEmpty() && name.isEmpty()) {
-    		errors.add(new SimpleMessage("specific", String.join(", ", id, name), "Ambos campos estan vacios", MessageType.ERROR));
+    		errors.add(new SimpleMessage("specific", null, messageSource.getMessage("specific.fields.notempty", null, locale), MessageType.ERROR));
     		return errors;
     	}
     	
     	if (!existsPokemonById(id) && !id.isEmpty()) {
-    		errors.add(new SimpleMessage(fieldName1, id, "Pokemon no encontrado", MessageType.ERROR));
+    		errors.add(new SimpleMessage(fieldName1, id, messageSource.getMessage("specific.id.notfound", null, locale), MessageType.ERROR));
         }
     	
     	if (!existsPokemonByName(name) && !name.isEmpty()) {
-    		errors.add(new SimpleMessage(fieldName2, name, "Pokemon no encontrado", MessageType.ERROR));
+    		errors.add(new SimpleMessage(fieldName2, name, messageSource.getMessage("specific.name.notfound", null, locale), MessageType.ERROR));
         }
     	
     	if (!(id.isEmpty() && name.isEmpty()) && !errors.isEmpty()) {
@@ -378,7 +378,7 @@ public class PokemonService {
     	
     	Pokemon pokemon = getPokemonByID(Integer.parseInt(id)).get();
     	if (!pokemon.getName().equalsIgnoreCase(name) && !name.isEmpty()) {
-    		errors.add(new SimpleMessage("specific", String.join(", ", id, name), "No existe un pokemon con esos respectivos campos", MessageType.ERROR));
+    		errors.add(new SimpleMessage("specific", String.join(", ", id, name), messageSource.getMessage("specific.fields.notfound", null, locale), MessageType.ERROR));
             return errors;
         }
     	
